@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://shyam-13.github.io/ShyamPortfolio/sitemap.xml
