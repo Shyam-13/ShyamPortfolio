@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Blog &amp; Playbooks | Shyam Vachhani</title>
+  <meta name="description"
+    content="Read product, engineering, and growth playbooks written by Shyam Vachhani. Practical frameworks, templates, and case studies.">
+  <link rel="canonical" href="https://shyam-13.github.io/ShyamPortfolio/blog.html">
+  <meta name="theme-color" content="#090f2e">
+  <link href="assets/img/favicon3.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Poppins:wght@400;500;600&family=Raleway:wght@400;600;700&display=swap"
+    rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="assets/css/main.css" rel="stylesheet">
+</head>
+
+<body class="blog-page dark-theme">
+  <header id="header" class="header dark-background d-flex flex-column">
+    <i class="header-toggle d-xl-none bi bi-list"></i>
+    <div class="profile-img">
+      <img src="assets/img/my-profile-img.jpg" alt="Shyam Vachhani portrait" class="img-fluid rounded-circle">
+    </div>
+    <a href="index.html" class="logo d-flex align-items-center justify-content-center">
+      <h1 class="sitename">Shyam Vachhani</h1>
+    </a>
+    <div class="social-links text-center">
+      <a href="https://www.linkedin.com/in/shyamvachhani1303/" target="_blank" rel="noopener" class="linkedin">
+        <i class="bi bi-linkedin"></i>
+      </a>
+      <button id="theme-toggle" class="theme-toggle icon-3d icon-3d-sm" aria-label="Toggle theme">
+        <i class="bi bi-moon-stars"></i>
+      </button>
+    </div>
+    <nav id="navmenu" class="navmenu">
+      <ul>
+        <li><a href="index.html#hero">
+            <span class="navicon icon-3d icon-3d-sm"><i class="bi bi-house-door"></i></span><span class="nav-label">Home</span>
+          </a></li>
+        <li><a href="index.html#about">
+            <span class="navicon icon-3d icon-3d-sm"><i class="bi bi-person"></i></span><span class="nav-label">About</span>
+          </a></li>
+        <li><a href="index.html#skills">
+            <span class="navicon icon-3d icon-3d-sm"><i class="bi bi-cpu"></i></span><span class="nav-label">Skills</span>
+          </a></li>
+        <li><a href="index.html#resume">
+            <span class="navicon icon-3d icon-3d-sm"><i class="bi bi-journal-text"></i></span><span class="nav-label">Resume</span>
+          </a></li>
+        <li><a href="index.html#services">
+            <span class="navicon icon-3d icon-3d-sm"><i class="bi bi-command"></i></span><span class="nav-label">Services</span>
+          </a></li>
+        <li><a href="index.html#portfolio">
+            <span class="navicon icon-3d icon-3d-sm"><i class="bi bi-kanban"></i></span><span class="nav-label">Portfolio</span>
+          </a></li>
+        <li><a href="index.html#blog" class="active">
+            <span class="navicon icon-3d icon-3d-sm"><i class="bi bi-journal-richtext"></i></span><span class="nav-label">Blog</span>
+          </a></li>
+        <li><a href="index.html#contact">
+            <span class="navicon icon-3d icon-3d-sm"><i class="bi bi-envelope-paper-heart"></i></span><span class="nav-label">Contact</span>
+          </a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="main">
+    <section class="page-title">
+      <div class="container" data-aos="fade-up">
+        <h1>Blog &amp; Field Notes</h1>
+        <p>Playbooks on shipping resilient products, coaching engineering teams, and scaling delightful experiences.</p>
+        <nav class="breadcrumbs">
+          <ol>
+            <li><a href="index.html#hero">Home</a></li>
+            <li>Blog</li>
+          </ol>
+        </nav>
+      </div>
+    </section>
+
+    <section class="blog section light-background">
+      <div class="container" data-aos="fade-up">
+        <div class="row g-4" id="blog-page-cards">
+          <!-- Blog cards injected via JS -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="footer" class="footer position-relative light-background">
+    <div class="container text-center">
+      <div class="copyright">
+        <p>© <span>Copyright</span> <strong class="px-1 sitename">Shyam Vachhani</strong> <span>All Rights Reserved</span>
+        </p>
+      </div>
+      <div class="credits">
+        Designed &amp; coded by <a href="index.html#hero">Shyam Vachhani</a>
+      </div>
+    </div>
+  </footer>
+
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+  <div id="preloader"></div>
+
+  <div class="modal fade blog-modal" id="blogModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div>
+            <p class="modal-eyebrow" id="blog-modal-meta"></p>
+            <h3 class="modal-title" id="blog-modal-title"></h3>
+          </div>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <img src="" alt="Blog cover" class="blog-modal-cover mb-4 rounded-3" id="blog-modal-cover">
+          <div id="blog-modal-content"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/typed.js/typed.umd.js"></script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+
+</html>
+
