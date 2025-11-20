@@ -485,6 +485,7 @@
     const date = new Date(blog.date);
     return `${date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })} · ${blog.readTime}`;
   }
+
     function createBlogCard(blog) {
     return `
       <div class="col-lg-4 col-md-6">
@@ -1336,7 +1337,8 @@ hero.addEventListener("mouseleave", () => {
 hero.addEventListener(
   "touchstart",
   (e) => {
-    e.preventDefault();
+    if (!e.target.closest('canvas')) return; // allow button/link clicks
+
     const rect = hero.getBoundingClientRect();
     const touches = e.targetTouches;
 
@@ -1354,14 +1356,16 @@ hero.addEventListener(
       ];
     }
   },
-  { passive: false }
+  { passive: true }
 );
+
 
 // 🟢 Touch Move
 hero.addEventListener(
   "touchmove",
   (e) => {
-    e.preventDefault();
+    if (!e.target.closest('canvas')) return;
+
     const rect = hero.getBoundingClientRect();
     const touches = e.targetTouches;
 
@@ -1374,8 +1378,9 @@ hero.addEventListener(
       pointer.y = touches[i].clientY - rect.top;
     }
   },
-  { passive: false }
+  { passive: true }
 );
+
 
 // 🟢 Touch End
 hero.addEventListener("touchend", (e) => {
