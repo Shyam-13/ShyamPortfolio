@@ -389,27 +389,32 @@ body.sidebar-expanded .header .social-links {
   }
 }
 
-.header .header-toggle {
-  color: var(--contrast-color);
-  background-color: var(--accent-color);
-  font-size: 22px;
+.header-toggle {
+  position: fixed;
+  top: 15px;
+  right: 15px;   /* ✅ Right side fixed */
+  width: 46px;
+  height: 46px;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+
+  background: var(--accent-color);
+  color: var(--contrast-color);
+  font-size: 24px;
+
   border-radius: 50%;
   cursor: pointer;
-  position: fixed;
-  top: 15px;
-  right: 15px;
-  z-index: 9999;
-  transition: background-color 0.3s;
+  z-index: 10000;
+
+  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.header .header-toggle:hover {
-  color: var(--contrast-color);
+.header-toggle:hover {
   background-color: color-mix(in srgb, var(--accent-color) 90%, white 15%);
+  transform: scale(1.05);
 }
 
 /*--------------------------------------------------------------
