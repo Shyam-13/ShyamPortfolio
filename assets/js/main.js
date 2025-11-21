@@ -1394,3 +1394,31 @@ hero.addEventListener("touchend", (e) => {
   }
 });
 
+
+
+  document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+  });
+
+
+  document.addEventListener('keydown', function(e) {
+    if (
+      e.keyCode === 123 || 
+      (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J')) ||
+      (e.ctrlKey && e.key === 'U')
+    ) {
+      e.preventDefault();
+      return false;
+    }
+  });
+
+
+  setInterval(function() {
+    const before = new Date().getTime();
+    debugger;
+    const after = new Date().getTime();
+    if (after - before > 100) {
+      window.location.href = "/";
+    }
+  }, 1000);
+
