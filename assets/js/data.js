@@ -184,10 +184,10 @@ window.SHYAM_DATA = {
   portfolio: [
     {
       id: 'nandan-plywood',
-      title: 'Nandan Plywood Digital Storefront',
+      title: 'Nandan Plywood - Store website',
       category: 'Website',
       cover: 'assets/img/portfolio/nandanplywood_website.jpg',
-      description: 'Immersive catalogue with live inventory sync for a premium plywood brand.',
+      description: 'A modern, easy-to-use website showcasing a wide range of plywood and interior products with quick navigation and easy inquiry options',
       preview: 'https://nandanplywood.example.com',
       gallery: [
         'assets/img/portfolio/nandanplywood_website.jpg',
@@ -198,75 +198,79 @@ window.SHYAM_DATA = {
       summary: 'A fully managed, SEO-ready experience that lets distributors explore finishes, check availability, and book consultations without friction.'
     },
     {
-      id: 'fleet-ops',
-      title: 'FleetOps Command Center',
-      category: 'WebApp',
-      cover: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=80',
-      description: 'Realtime logistics visibility platform with predictive ETAs.',
-      preview: 'https://fleetops.example.com',
-      gallery: [
-        'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1400&q=80'
-      ],
-      tech: ['Next.js', 'SignalR', 'Azure Functions', 'Mapbox'],
-      impact: ['92% reduction in blind spots', 'Automated escalation workflows', 'Command KPIs in a single pane'],
-      summary: 'Integrated telematics, driver scoring, and dispatch workflows to keep high-volume fleets accountable.'
-    },
+  id: 'lollipopz-boutique',
+  title: 'Lollipopz Boutique',
+  category: 'Ecommerce',
+  cover: 'assets/img/portfolio/lollipopz.png',
+  description: 'Online fashion boutique with seamless shopping experience.',
+  preview: 'https://www.lollipopzboutique.com/',
+  gallery: [
+    'https://images.unsplash.com/photo-1521334884684-d80222895322?auto=format&fit=crop&w=1400&q=80'
+  ],
+  tech: ['WordPress', 'WooCommerce', 'Elementor', 'Cloudflare'],
+  impact: ['Improved mobile usability', 'Fast checkout process', 'Enhanced product browsing'],
+  summary: 'Designed and developed a fully responsive fashion ecommerce platform with optimized UX.'
+},
+
     {
-      id: 'wellness-mobile',
-      title: 'Pulse Wellness Mobile',
-      category: 'Mobile',
-      cover: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80',
-      description: 'Guided wellness journeys with habit loops and wearable sync.',
-      preview: 'https://pulsewellness.example.com',
-      gallery: [
-        'https://images.unsplash.com/photo-1531746790731-6c087fecd65a?auto=format&fit=crop&w=1200&q=80'
-      ],
-      tech: ['React Native', 'Expo', 'Firebase', 'Stripe'],
-      impact: ['4.9⭐ app store rating', '42% increase in day-30 retention', 'HIPAA-ready infrastructure'],
-      summary: 'A personalized health companion with AI nudges, progress dashboards, and subscription billing.'
-    },
-    {
-      id: 'legal-automation',
-      title: 'LexFlow Automation Suite',
-      category: 'WebApp',
-      cover: 'https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?auto=format&fit=crop&w=1200&q=80',
-      description: 'Document automation and client portal for boutique law firms.',
-      preview: 'https://lexflow.example.com',
-      gallery: [
-        'https://images.unsplash.com/photo-1517430816045-df4b7de11d1d?auto=format&fit=crop&w=1200&q=80'
-      ],
-      tech: ['ASP.NET Core', 'Blazor', 'Azure AD B2C', 'Cosmos DB'],
-      impact: ['Client onboarding reduced to 8 mins', 'Bank-level compliance controls', 'Doc accuracy +61%'],
-      summary: 'Secure automation suite to draft, review, and deliver legal documents with full audit trails.'
-    },
-    {
-      id: 'insight-commerce',
-      title: 'Insight Commerce Intelligence',
-      category: 'Website',
-      cover: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=1200&q=80',
-      description: 'Headless commerce insights with experimental landing pages.',
-      preview: 'https://insightcommerce.example.com',
-      gallery: [
-        'https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=1200&q=80'
-      ],
-      tech: ['Remix', 'Shopify Hydrogen', 'Sanity CMS', 'Edge Functions'],
-      impact: ['+38% campaign ROI', 'Reusable landing page system', 'Live merchandising scorecards'],
-      summary: 'Marketing-ready microsites with centralized schema, localization, and media automation.'
-    },
-    {
-      id: 'proptech-visualizer',
-      title: 'PropTech 3D Visualizer',
-      category: 'Website',
-      cover: 'https://images.unsplash.com/photo-1481277542470-605612bd2d61?auto=format&fit=crop&w=1200&q=80',
-      description: 'Interactive property configurator with 3D walkthroughs.',
-      preview: 'https://proptechviz.example.com',
-      gallery: [
-        'https://images.unsplash.com/photo-1503389152951-9f343605f61e?auto=format&fit=crop&w=1200&q=80'
-      ],
-      tech: ['Three.js', 'React', 'Azure Static Web Apps', 'Contentful'],
-      impact: ['7 min avg dwell time', 'VR-ready assets', 'Automated lead assignment'],
-      summary: 'Immersive property journeys with shareable scenes, financing calculators, and CRM automation.'
-    }
+  id: 'handmade-tales',
+  title: 'Handmade Tales',
+  category: 'Ecommerce',
+  cover: 'assets/img/portfolio/handmadetales.png',
+  description: 'Handcrafted product store with clean and engaging layout.',
+  preview: 'https://shophandmadetales.com/',
+  gallery: [
+    'https://images.unsplash.com/photo-1492724441997-5dc865305da7?auto=format&fit=crop&w=1400&q=80'
+  ],
+  tech: ['Shopify', 'Liquid', 'Custom JavaScript'],
+  impact: ['Streamlined product discovery', 'High-speed page loading', 'Optimized checkout flow'],
+  summary: 'Built a conversion-focused ecommerce experience for a handmade goods brand.'
+},
+
+   {
+  id: 'handmade-gifts',
+  title: 'Handmade Gifts',
+  category: 'Ecommerce',
+  cover: 'assets/img/portfolio/handmadegift.png',
+  description: 'Custom gift marketplace with personalized shopping features.',
+  preview: 'https://handmade.gifts/',
+  gallery: [
+    'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=1400&q=80'
+  ],
+  tech: ['WordPress', 'WooCommerce', 'Custom PHP'],
+  impact: ['Improved search and filtering', 'Higher user engagement', 'Mobile-first interface'],
+  summary: 'Developed a scalable ecommerce platform for personalized gifting solutions.'
+},
+
+   {
+  id: 'down-dog',
+  title: 'Down Dog India',
+  category: 'Business',
+  cover: 'assets/img/portfolio/downdog.png',
+  description: 'Premium lifestyle and wellness brand website.',
+  preview: 'https://www.downdog.co.in/',
+  gallery: [
+    'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=1400&q=80'
+  ],
+  tech: ['WordPress', 'Custom Theme', 'GSAP'],
+  impact: ['Enhanced brand presence', 'Interactive UI animations', 'Improved page performance'],
+  summary: 'Created a visually strong brand website focused on storytelling and user engagement.'
+},
+   {
+  id: 'hijab-boutique',
+  title: 'Hijab Boutique',
+  category: 'Ecommerce',
+  cover: 'assets/img/portfolio/hijab.png',
+  description: 'Elegant online store for hijabs and modest fashion.',
+  preview: 'https://www.hijab-boutique.com/',
+  gallery: [
+    'https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=1400&q=80'
+  ],
+  tech: ['Shopify', 'Custom Liquid', 'Third-party Apps'],
+  impact: ['Higher conversion rates', 'Optimized product layouts', 'Fast and secure checkout'],
+  summary: 'Delivered a modern ecommerce experience tailored for a modest fashion brand.'
+},
+
   ],
   blogs: [
     {
