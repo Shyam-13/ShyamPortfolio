@@ -2410,3 +2410,13 @@ body.dark-theme .cta-card {
   0%, 100% { transform: translate(-50%, 0); }
   50% { transform: translate(-50%, 8px); }
 }
+@media (max-width: 768px) {
+  body {
+    overflow: hidden;
+    height: 100vh;
+  }
+
+  body.scroll-enabled {
+    overflow-y: auto;
+  }
+}
