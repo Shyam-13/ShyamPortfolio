@@ -256,7 +256,7 @@ window.SHYAM_DATA = {
   impact: ['Enhanced brand presence', 'Interactive UI animations', 'Improved page performance'],
   summary: 'Created a visually strong brand website focused on storytelling and user engagement.'
 },
-   {
+{
   id: 'hijab-boutique',
   title: 'Hijab Boutique',
   category: 'Ecommerce',
@@ -274,49 +274,52 @@ window.SHYAM_DATA = {
   ],
   blogs: [
     {
-      id: 'ai-product',
-      title: 'AI-Augmented Product Discovery Playbook',
-      date: '2025-10-03',
-      readTime: '6 min read',
-      cover: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=80',
-      excerpt: 'How I combine AI copilots, opportunity solution trees, and field notes to de-risk product bets before sprint 1.',
-      content: `<p>Discovery has always been the difference between rushed releases and purposeful impact. I now pair traditional research with AI copilots to accelerate insight loops, cluster user quotes, and pressure test roadmap bets.</p>
-      <p>My playbook: map opportunity solution trees, feed transcripts into GPT fine-tuned models, then translate recurring pain points into measurable experiments. The result is a roadmap anchored in evidence, not hunches.</p>
-      <p>Bonus: I share my FigJam discovery kit and the exact AI prompts I use with founders.</p>`
-    },
-    {
-      id: 'performance-ux',
-      title: 'Designing for <2s: Performance-First UX',
-      date: '2025-08-19',
-      readTime: '8 min read',
-      cover: 'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=900&q=80',
-      excerpt: 'A framework to align designers, devs, and marketing on shared performance budgets.',
-      content: `<p>Great UX is invisible until latency breaks the spell. I walk through my performance budgeting framework that merges UX intent, component telemetry, and CI gates.</p>
-      <ul><li>Define guardrails: TTFB, TTI, CLS, and interaction budgets per page type.</li>
-      <li>Instrument everything: Web Vitals, heatmaps, and rage-click signals.</li>
-      <li>Close the loop: automated reports pumped straight into design critiques.</li></ul>
-      <p>Use the included Notion template to add performance checkpoints to your sprint rituals.</p>`
-    },
-    {
-      id: 'team-os',
-      title: 'Building a Team Operating System',
-      date: '2025-07-02',
-      readTime: '5 min read',
-      cover: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=900&q=80',
-      excerpt: 'Principles, rituals, and dashboards that keep remote squads aligned without micromanagement.',
-      content: `<p>Scaling teams is less about tools and more about rituals. I cover how I install lightweight operating systems that blend async updates, demo-driven accountability, and health metrics that actually matter.</p>
-      <p>Inside: templates for weekly squad reviews, progressive delivery scorecards, and mentoring ladders .</p>`
-    },
-    {
-      id: 'designops-automation',
-      title: 'Automating DesignOps with Code',
-      date: '2025-06-10',
-      readTime: '7 min read',
-      cover: 'https://images.unsplash.com/photo-1454165205744-3b78555e5572?auto=format&fit=crop&w=900&q=80',
-      excerpt: 'Shipping faster by syncing design tokens, documentation, and QA snapshots.',
-      content: `<p>DesignOps becomes real when tokens, documentation, and QA live in one automated pipeline. I share how we wired Figma tokens to React design systems, auto-generated documentation, and visual regression checks.</p>
-      <p>Outcome: fewer handoff gaps, higher confidence releases, and happier teams.</p>`
-    }
+  id: 'ai-product',
+  title: 'Why Your Website Is the Foundation of Your Brand',
+  date: '2025-10-03', 
+  readTime: '6 min read',
+  cover: 'assets/img/blog/1762773072390.png',
+  excerpt: 'Your website is more than just pages — it’s your brand’s identity, trust builder, and digital foundation.',
+  content: `
+    <p>In today’s digital-first world, your website isn’t just a collection of pages — it’s your brand’s identity, voice, and reputation all in one place.</p>
+
+    <p>Many businesses focus heavily on social media, but the truth is: your website is the only online space you truly own. It’s the foundation of your digital branding — and it works for you 24/7.</p>
+
+    <h3>1. First Impressions Matter</h3>
+    <p>When someone discovers your brand, the first thing they do is check your website. A clean, modern, and well-designed website instantly builds trust and credibility, while a slow or outdated one can make visitors doubt your professionalism.</p>
+    <p>Your website is often the first handshake your brand gives to the world — make it count.</p>
+
+    <h3>2. A Website Builds Brand Identity</h3>
+    <p>From your logo, colors, and typography to your tone of content — every element on your website communicates your brand personality.</p>
+    <ul>
+      <li>Define your brand story</li>
+      <li>Showcase your products or services</li>
+      <li>Highlight your values and achievements</li>
+    </ul>
+    <p>It’s not just a digital brochure — it’s your brand’s home.</p>
+
+    <h3>3. Helps You Reach and Convert More Customers</h3>
+    <p>Unlike social platforms, your website lets you:</p>
+    <ul>
+      <li>Capture leads directly</li>
+      <li>Sell products or services without commission</li>
+      <li>Use SEO to reach people searching for what you offer</li>
+      <li>Analyze visitor behavior to improve results</li>
+    </ul>
+    <p>Every visitor is a potential customer — and your website helps you turn that traffic into growth.</p>
+
+    <h3>4. Strengthens Customer Trust</h3>
+    <p>A professional website shows customers that your business is real, reliable, and ready. With clear contact details, testimonials, and case studies, people feel more confident doing business with you.</p>
+    <p>Your website becomes the digital proof of your brand’s quality.</p>
+
+    <h3>5. Keeps Your Brand Consistent</h3>
+    <p>Your website ties all your marketing channels together — from Instagram and LinkedIn to email campaigns and Google Ads. When your design and message are consistent everywhere, your brand looks stronger and more professional.</p>
+
+    <h3>Final Thought</h3>
+    <p>Social media may bring attention — but your website builds reputation. It’s where your brand story lives, your audience connects, and your business grows.</p>
+    <p>If you want your brand to stand out, invest in your website. It’s not an expense — it’s your digital foundation.</p>
+  `
+}   
   ]
 };
 
