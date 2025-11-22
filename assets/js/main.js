@@ -1422,3 +1422,10 @@ hero.addEventListener("touchend", (e) => {
     }
   }, 1000);
 
+
+const heroSection = document.getElementById("hero");
+// Disable touch scrolling inside hero
+heroSection.addEventListener("touchmove", function (e) {
+  e.preventDefault();
+}, { passive: false });
+
