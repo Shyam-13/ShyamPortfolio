@@ -186,24 +186,18 @@
   }
 
   window.addEventListener("load", initSwiper);
-
-  /**
-   * Correct scrolling position upon page load for URLs containing hash links.
-   */
-  window.addEventListener('load', function(e) {
-    if (window.location.hash) {
-      if (document.querySelector(window.location.hash)) {
-        setTimeout(() => {
-          let section = document.querySelector(window.location.hash);
-          let scrollMarginTop = getComputedStyle(section).scrollMarginTop;
-          window.scrollTo({
-            top: section.offsetTop - parseInt(scrollMarginTop),
-            behavior: 'smooth'
-          });
-        }, 100);
-      }
+  
+window.addEventListener('load', function() {
+  setTimeout(() => {
+    const hero = document.getElementById("hero");
+    if (hero) {
+      hero.scrollIntoView({ behavior: "auto" });
     }
-  });
+
+    // Remove hash from URL (#about, #contact etc.)
+    history.replaceState(null, null, " ");
+  }, 100);
+});
 
   /**
    * Navmenu Scrollspy
@@ -1394,8 +1388,6 @@ hero.addEventListener("touchend", (e) => {
   }
 });
 
-
-
   document.addEventListener('contextmenu', function(e) {
     e.preventDefault();
   });
@@ -1428,4 +1420,5 @@ const heroSection = document.getElementById("hero");
 heroSection.addEventListener("touchmove", function (e) {
   e.preventDefault();
 }, { passive: false });
+
 
