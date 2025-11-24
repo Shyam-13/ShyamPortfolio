@@ -2205,7 +2205,7 @@ canvas {
 .blog-modal .modal-title,
 .blog-modal #blog-modal-content p,
 .blog-modal #blog-modal-content li {
-  color: #111;
+  color: #fffefe;
 }
 
 
@@ -2217,8 +2217,8 @@ canvas {
 }
 /* Light Mode Modal */
 .blog-modal .modal-content {
-  background: #ffffff;
-  color: #111;
+  background: #0f172a;
+  color: #f1f5f9;
 }
 
 /* Dark Mode Modal */
@@ -2415,4 +2415,3 @@ body.dark-theme .cta-card {
   height: 100vh;
   overflow: hidden;   /* ✅ blocks scroll only in hero */
 }
-
