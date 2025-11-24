@@ -2244,7 +2244,7 @@ canvas {
 
 /* Default (Light mode) */
 .blog-modal .btn-close {
-  filter: invert(0);
+  filter: invert(1) brightness(2);
 }
 
 /* Dark mode – make the close icon white */
@@ -2415,3 +2415,10 @@ body.dark-theme .cta-card {
   height: 100vh;
   overflow: hidden;   /* ✅ blocks scroll only in hero */
 }
+
+
+
+
+
+
+
