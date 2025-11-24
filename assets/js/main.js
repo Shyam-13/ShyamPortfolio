@@ -1420,5 +1420,46 @@ const heroSection = document.getElementById("hero");
 heroSection.addEventListener("touchmove", function (e) {
   e.preventDefault();
 }, { passive: false });
+// ✅ Close sidebar when clicking/touching outside (mobile fix)
+document.addEventListener('click', function (e) {
+  const sidebar = document.getElementById('header');
+  const toggleBtn = document.querySelector('.header-toggle');
+
+  // If sidebar is open
+  if (sidebar.classList.contains('header-show')) {
+    
+    // If click is NOT inside sidebar AND NOT on toggle button
+    if (
+      !sidebar.contains(e.target) &&
+      !toggleBtn.contains(e.target)
+    ) {
+      // Close sidebar
+      sidebar.classList.remove('header-show');
+      document.body.classList.remove('sidebar-expanded');
+
+      toggleBtn.classList.add('bi-list');
+      toggleBtn.classList.remove('bi-x');
+    }
+  }
+});
+
+// ✅ Mobile touch support
+document.addEventListener('touchstart', function (e) {
+  const sidebar = document.getElementById('header');
+  const toggleBtn = document.querySelector('.header-toggle');
+
+  if (sidebar.classList.contains('header-show')) {
+    if (
+      !sidebar.contains(e.target) &&
+      !toggleBtn.contains(e.target)
+    ) {
+      sidebar.classList.remove('header-show');
+      document.body.classList.remove('sidebar-expanded');
+
+      toggleBtn.classList.add('bi-list');
+      toggleBtn.classList.remove('bi-x');
+    }
+  }
+});
 
 
