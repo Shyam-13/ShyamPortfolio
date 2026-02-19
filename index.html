@@ -180,145 +180,266 @@ Total Overs:
 </div>
 
 <script>
-let started=false, inning=1;
-let runs=0,wickets=0,balls=0,totalBalls=0,target=0,matchOver=false;
-let history=[[]],firstHistory=null,secondHistory=null,stack=[];
-let matches=JSON.parse(localStorage.getItem("matches"))||[];
+/* ================= STATE ================= */
+let started = false, inning = 1;
+let runs = 0, wickets = 0;
+let balls = 0;              // legal balls only
+let totalBalls = 0;
+let target = 0;
+let matchOver = false;
 
-function enableScore(e){
-document.querySelectorAll(".scoreBtn").forEach(b=>b.disabled=!e);
-document.getElementById("overHistoryBtn").disabled=!started;
-}
+let history = [[]];
+let firstHistory = null;
+let secondHistory = null;
 
-function showTap(text,x,y,type){
-const el=document.createElement("div");
-el.className=`float-score ${type}`;
-el.innerText=text;
-el.style.left=x+"px";
-el.style.top=y+"px";
-document.body.appendChild(el);
-setTimeout(()=>el.remove(),800);
-}
+let stack = []; // UNDO stack
+let matches = JSON.parse(localStorage.getItem("matches")) || [];
 
-function startMatch(){
-totalBalls=totalOvers.value*6;
-started=true;inning=1;
-enableScore(true);
-startBtn.disabled=true;
-inningText.innerText="First Innings";
-update();
-}
-
-function ball(r,e){
-if(!started||matchOver)return;
-runs+=r;balls++;extra
-history.at(-1).push(r===0?".":r);
-if(balls%6===0)history.push([]);
-showTap(r===0?"•":"+"+r,e.clientX,e.clientY,"run");
-update();
-}
+/* ================= HELPERS ================= */
 function canPlay(){
   return started && !matchOver && balls < totalBalls;
 }
-function extra(type, e){
+
+function saveState(){
+  stack.push(JSON.stringify({
+    runs, wickets, balls,
+    history, inning,
+    target, matchOver,
+    firstHistory, secondHistory
+  }));
+}
+
+function enableScore(enable){
+  document.querySelectorAll(".scoreBtn")
+    .forEach(b => b.disabled = !enable);
+
+  document.getElementById("overHistoryBtn").disabled = !started;
+}
+
+/* ================= TAP ANIMATION ================= */
+function showTap(text,x,y,type){
+  const el=document.createElement("div");
+  el.className=`float-score ${type}`;
+  el.innerText=text;
+  el.style.left=x+"px";
+  el.style.top=y+"px";
+  document.body.appendChild(el);
+  setTimeout(()=>el.remove(),800);
+}
+
+/* ================= MATCH ================= */
+function startMatch(){
+  totalBalls = totalOvers.value * 6;
+  started = true;
+  inning = 1;
+  runs = wickets = balls = 0;
+  history = [[]];
+  stack = [];
+
+  startBtn.disabled = true;
+  inningText.innerText = "First Innings";
+
+  enableScore(true);
+  update();
+}
+
+/* ================= SCORING ================= */
+function ball(r,e){
   if(!canPlay()) return;
 
-  let ex = parseInt(prompt("Runs on " + type, 1)) || 1;
-  save();
+  saveState();
 
+  runs += r;
+  balls++; // legal ball
+  history.at(-1).push(r===0 ? "." : r);
+
+  if(balls % 6 === 0){
+    history.push([]); // new over
+  }
+
+  showTap(r===0?"•":"+"+r, e.clientX, e.clientY, "run");
+  update();
+}
+
+function wicket(e){
+  if(!canPlay()) return;
+
+  saveState();
+
+  wickets++;
+  balls++; // legal ball
+  history.at(-1).push("W");
+
+  if(balls % 6 === 0){
+    history.push([]);
+  }
+
+  showTap("W", e.clientX, e.clientY, "wicket");
+  update();
+}
+
+function extra(type,e){
+  if(!canPlay()) return;
+
+  saveState();
+
+  let ex = parseInt(prompt("Runs on " + type, 1)) || 1;
   runs += ex;
   history.at(-1).push(`${type}+${ex}`);
 
-  if(e){
-    showTap(`${type}+${ex}`, e.clientX, e.clientY, "extra");
+  showTap(`${type}+${ex}`, e.clientX, e.clientY, "extra");
+  update();
+}
+
+/* ================= INNINGS ================= */
+function endInnings(){
+  if(inning !== 1) return;
+
+  saveState();
+
+  firstHistory = JSON.parse(JSON.stringify(history));
+  target = runs + 1;
+
+  runs = wickets = balls = 0;
+  history = [[]];
+  inning = 2;
+
+  inningText.innerText = "Second Innings";
+  update();
+}
+
+/* ================= UPDATE ================= */
+function update(){
+  score.innerText = `${runs}/${wickets}`;
+  overs.innerText = `Overs: ${Math.floor(balls/6)}.${balls%6}`;
+  currentOver.innerText =
+    `Current Over: ${history.at(-1).join(" ") || "—"}`;
+
+  target.innerText = inning===2 ? `Target: ${target}` : "";
+
+  enableScore(started && !matchOver);
+
+  /* AUTO FINISH */
+  if(inning===2 && !matchOver){
+    if(runs >= target){
+      finish(teamB.value);
+    }
+    else if(balls >= totalBalls || wickets >= 10){
+      finish(teamA.value);
+    }
   }
+
+  /* AUTO END FIRST INNINGS */
+  if(inning===1 && balls >= totalBalls){
+    endInnings();
+  }
+}
+
+/* ================= FINISH ================= */
+function finish(winner){
+  matchOver = true;
+
+  result.innerText = `${winner} WON THE MATCH 🎉`;
+  result.classList.add("win");
+
+  secondHistory = JSON.parse(JSON.stringify(history));
+
+  matches.push({
+    teams: `${teamA.value} vs ${teamB.value}`,
+    winner,
+    first: firstHistory,
+    second: secondHistory
+  });
+
+  localStorage.setItem("matches", JSON.stringify(matches));
+  enableScore(false);
+}
+
+/* ================= UNDO ================= */
+function undo(){
+  if(!stack.length) return;
+
+  let s = JSON.parse(stack.pop());
+
+  runs = s.runs;
+  wickets = s.wickets;
+  balls = s.balls;
+  history = s.history;
+  inning = s.inning;
+  target = s.target;
+  matchOver = s.matchOver;
+  firstHistory = s.firstHistory;
+  secondHistory = s.secondHistory;
+
+  result.innerText = "";
+  result.classList.remove("win");
 
   update();
 }
 
-
-function wicket(e){
-wickets++;balls++;
-history.at(-1).push("W");
-if(balls%6===0)history.push([]);
-showTap("W",e.clientX,e.clientY,"wicket");
-update();
-}
-
-function endInnings(){
-firstHistory=JSON.parse(JSON.stringify(history));
-target=runs+1;
-runs=wickets=balls=0;
-history=[[]];inning=2;
-inningText.innerText="Second Innings";
-update();
-}
-
-function update(){
-score.innerText=`${runs}/${wickets}`;
-overs.innerText=`Overs: ${Math.floor(balls/6)}.${balls%6}`;
-currentOver.innerText=`Current Over: ${history.at(-1).join(" ")||"—"}`;
-target.innerText=inning===2?`Target: ${target}`:"";
-enableScore(started&&!matchOver);
-
-if(inning===2&&!matchOver){
-if(runs>=target)finish(teamB.value);
-else if(balls>=totalBalls||wickets>=10)finish(teamA.value);
-}
-}
-
-function finish(winner){
-matchOver=true;
-result.innerText=`${winner} WON THE MATCH 🎉`;
-result.classList.add("win");
-secondHistory=JSON.parse(JSON.stringify(history));
-matches.push({teams:`${teamA.value} vs ${teamB.value}`,winner,first:firstHistory,second:secondHistory});
-localStorage.setItem("matches",JSON.stringify(matches));
-enableScore(false);
-}
-
-function openOverHistory(){
-mainScreen.style.display="none";
-overHistoryScreen.style.display="block";
-overInningText.innerText=`Current Innings: ${inning===1?"First":"Second"}`;
-firstOverHistory.innerHTML=formatOver(firstHistory||history,inning===1);
-secondOverHistory.innerHTML=inning===2?formatOver(history,true):"—";
-}
-
-function openMatchHistory(){
-mainScreen.style.display="none";
-matchHistoryScreen.style.display="block";
-matchList.innerHTML=matches.map((m,i)=>`<b>Match ${i+1}</b><br>${m.teams}<br>Winner: ${m.winner}<br><br>`).join("")||"No matches yet";
-}
-
-function backToMain(){
-document.querySelectorAll(".card").forEach(c=>c.style.display="none");
-mainScreen.style.display="block";
-}
-
+/* ================= HISTORY ================= */
 function overRuns(o){
-return o.reduce((s,b)=>{
-if(b==="."||b==="W")return s;
-if(typeof b==="number")return s+b;
-if(b.includes("+"))return s+parseInt(b.split("+")[1]);
-return s;
-},0);
+  return o.reduce((s,b)=>{
+    if(b==="."||b==="W") return s;
+    if(typeof b==="number") return s+b;
+    if(b.includes("+")) return s+parseInt(b.split("+")[1]);
+    return s;
+  },0);
 }
 
 function formatOver(h,isLive){
-if(!h)return"—";
-let html="";
-h.forEach((o,i)=>{
-if(!o.length)return;
-let lbl=isLive&&i===h.length-1?`<b>Current Over</b>`:`<b>Over ${i+1}</b>`;
-html+=`${lbl}: ${o.join(" ")} | Runs: ${overRuns(o)}<br>`;
-});
-return html;
+  if(!h) return "—";
+  let html="";
+  h.forEach((o,i)=>{
+    if(!o.length) return;
+    let lbl = isLive && i===h.length-1
+      ? `<b>Current Over</b>`
+      : `<b>Over ${i+1}</b>`;
+    html += `${lbl}: ${o.join(" ")} | Runs: ${overRuns(o)}<br>`;
+  });
+  return html;
 }
 
-function undo(){location.reload()}
-function resetMatch(){location.reload()}
+function openOverHistory(){
+  mainScreen.style.display="none";
+  overHistoryScreen.style.display="block";
+
+  overInningText.innerText =
+    `Current Innings: ${inning===1?"First":"Second"}`;
+
+  if(inning===1){
+    firstOverHistory.innerHTML = formatOver(history,true);
+    secondOverHistory.innerHTML = "—";
+  }else{
+    firstOverHistory.innerHTML = formatOver(firstHistory,false);
+    secondOverHistory.innerHTML = formatOver(history,true);
+  }
+}
+
+function openMatchHistory(){
+  mainScreen.style.display="none";
+  matchHistoryScreen.style.display="block";
+
+  matchList.innerHTML =
+    matches.map((m,i)=>`
+      <b>Match ${i+1}</b><br>
+      ${m.teams}<br>
+      Winner: ${m.winner}<br><br>
+    `).join("") || "No matches yet";
+}
+
+function backToMain(){
+  document.querySelectorAll(".card")
+    .forEach(c=>c.style.display="none");
+  mainScreen.style.display="block";
+}
+
+/* ================= RESET ================= */
+function resetMatch(){
+  location.reload();
+}
 </script>
+
 
 </body>
 </html>
