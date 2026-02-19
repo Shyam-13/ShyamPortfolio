@@ -3,24 +3,116 @@
 <head>
 <title>Cricket Score App</title>
 <style>
-body{font-family:Arial;background:#eef2f5;display:flex;justify-content:center}
-.card{background:#fff;width:580px;padding:20px;border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,.2)}
-h2,h3{text-align:center;margin:6px}
-.score{font-size:30px;font-weight:bold;text-align:center}
-.currentOver{text-align:center;font-size:14px;color:#555}
-button{padding:8px;margin:4px;width:120px;border:none;border-radius:5px;cursor:pointer}
-button:disabled{opacity:.4;cursor:not-allowed}
-.start{background:#2e7d32;color:#fff;width:250px}
-.reset{background:#b71c1c;color:#fff;width:250px}
-.ctrl{background:#1565c0;color:#fff;width:250px}
-.undo{background:#333;color:#fff;width:250px}
+*{
+  box-sizing:border-box;
+}
+
+body{
+  font-family:Arial;
+  background:#eef2f5;
+  display:flex;
+  justify-content:center;
+  padding:10px;
+  margin:0;
+}
+
+/* CARD */
+.card{
+  background:#fff;
+  width:100%;
+  max-width:580px;
+  padding:16px;
+  border-radius:10px;
+  box-shadow:0 4px 10px rgba(0,0,0,.2);
+}
+
+h2,h3,h4{
+  text-align:center;
+  margin:6px 0;
+}
+
+/* SCORE */
+.score{
+  font-size:32px;
+  font-weight:bold;
+  text-align:center;
+}
+
+.currentOver{
+  text-align:center;
+  font-size:14px;
+  color:#555;
+  word-wrap:break-word;
+}
+
+/* INPUTS */
+input{
+  padding:8px;
+  width:100%;
+  max-width:160px;
+  margin:4px;
+}
+
+/* BUTTONS */
+button{
+  padding:10px;
+  margin:5px;
+  width:100%;
+  max-width:120px;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+  font-size:14px;
+}
+
+button:disabled{
+  opacity:.4;
+  cursor:not-allowed;
+}
+
+/* BUTTON COLORS */
+.start{background:#2e7d32;color:#fff;max-width:260px}
+.reset{background:#b71c1c;color:#fff;max-width:260px}
+.ctrl{background:#1565c0;color:#fff;max-width:260px}
+.undo{background:#333;color:#fff;max-width:260px}
 .dot{background:#607d8b;color:#fff}
 .wide{background:#ff9800;color:#fff}
 .nb{background:#9c27b0;color:#fff}
 .w{background:#e53935;color:#fff}
-.result{text-align:center;font-weight:bold;margin-top:10px}
-input{padding:6px;width:140px}
-hr{margin:10px 0}
+
+/* FLEX GROUPS */
+.btn-row{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+
+/* RESULT */
+.result{
+  text-align:center;
+  font-weight:bold;
+  margin-top:10px;
+}
+
+/* HR */
+hr{margin:12px 0}
+
+/* 📱 MOBILE OPTIMIZATION */
+@media(max-width:480px){
+  .score{
+    font-size:26px;
+  }
+
+  button{
+    max-width:100px;
+    font-size:13px;
+    padding:9px;
+  }
+
+  input{
+    max-width:100%;
+  }
+}
 </style>
 </head>
 <body>
