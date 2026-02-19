@@ -5,24 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
-*{
-  box-sizing:border-box;
-  -webkit-tap-highlight-color:transparent;
-}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0;font-family:Arial;background:#eef2f5}
+body{display:flex;justify-content:center}
 
-html,body{
-  margin:0;
-  padding:0;
-  font-family:Arial;
-  background:#eef2f5;
-}
-
-body{
-  display:flex;
-  justify-content:center;
-}
-
-/* APP */
+/* APP CARD */
 .card{
   width:100%;
   min-height:100vh;
@@ -31,82 +18,34 @@ body{
   padding:clamp(8px,2vw,14px);
   overflow-y:auto;
 }
-
-/* DESKTOP */
 @media(min-width:768px){
-  .card{
-    margin:12px 0;
-    border-radius:12px;
-    box-shadow:0 4px 10px rgba(0,0,0,.2);
-  }
+  .card{margin:12px 0;border-radius:12px;box-shadow:0 4px 10px rgba(0,0,0,.2)}
 }
 
-h2,h3,h4{
-  text-align:center;
-  margin:4px 0;
-}
+/* TEXT */
+h2,h3,h4{text-align:center;margin:4px 0}
+.score{font-size:clamp(24px,7vw,36px);font-weight:bold;text-align:center}
+.currentOver{font-size:12px;color:#555;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
-.score{
-  font-size:clamp(24px,7vw,36px);
-  font-weight:bold;
-  text-align:center;
-}
+/* INPUT */
+input{padding:6px;font-size:12px;max-width:150px;margin:3px}
 
-.currentOver{
-  font-size:clamp(11px,2.8vw,14px);
-  color:#555;
-  text-align:center;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
-}
-
-input{
-  padding:clamp(5px,1.5vw,8px);
-  font-size:clamp(11px,2.8vw,14px);
-  max-width:150px;
-  margin:3px;
-}
-
-.btn-row{
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-}
-
+/* BUTTONS */
+.btn-row{display:flex;flex-wrap:wrap;justify-content:center}
 button{
-  padding:clamp(6px,1.8vw,12px);
-  margin:clamp(3px,1vw,6px);
-  max-width:clamp(70px,18vw,110px);
-  width:100%;
-  font-size:clamp(11px,2.8vw,14px);
-  border:none;
-  border-radius:6px;
-  cursor:pointer;
-  position:relative;
-  overflow:hidden;
+  padding:8px;margin:4px;width:100%;max-width:100px;
+  font-size:12px;border:none;border-radius:6px;
+  cursor:pointer;position:relative;overflow:hidden;
   transition:transform .08s ease;
 }
-
 button:active{transform:scale(.94)}
 button:disabled{opacity:.4}
-
 button::after{
-  content:"";
-  position:absolute;
-  top:50%;
-  left:50%;
-  width:0;
-  height:0;
-  background:rgba(255,255,255,.35);
-  border-radius:50%;
-  transform:translate(-50%,-50%);
+  content:"";position:absolute;top:50%;left:50%;
+  width:0;height:0;background:rgba(255,255,255,.35);
+  border-radius:50%;transform:translate(-50%,-50%);
 }
-button:active::after{
-  width:120%;
-  height:120%;
-  transition:.4s;
-}
+button:active::after{width:120%;height:120%;transition:.4s}
 
 /* COLORS */
 .start{background:#2e7d32;color:#fff}
@@ -119,30 +58,18 @@ button:active::after{
 .w{background:#e53935;color:#fff}
 
 /* RESULT */
-.result{
-  text-align:center;
-  font-weight:bold;
-  margin-top:6px;
-}
-
-/* WIN ANIMATION */
+.result{text-align:center;font-weight:bold;margin-top:6px}
+.result.win{color:#2e7d32;animation:winPop .6s ease}
 @keyframes winPop{
   0%{transform:scale(.6);opacity:0}
   60%{transform:scale(1.15);opacity:1}
   100%{transform:scale(1)}
 }
-.result.win{
-  animation:winPop .6s ease;
-  color:#2e7d32;
-}
 
-/* FLOATING TAP ANIMATION */
+/* FLOAT ANIMATION */
 .float-score{
-  position:fixed;
-  z-index:9999;
-  pointer-events:none;
-  font-weight:bold;
-  font-size:clamp(16px,5vw,26px);
+  position:fixed;z-index:9999;font-weight:bold;
+  pointer-events:none;font-size:22px;
   animation:floatUp .8s ease-out forwards;
 }
 @keyframes floatUp{
@@ -153,12 +80,24 @@ button:active::after{
 .float-score.run{color:#2e7d32}
 .float-score.extra{color:#ff9800}
 .float-score.wicket{color:#e53935}
+
+/* HISTORY UI */
+.history-box{
+  background:#f5f5f5;
+  border-radius:6px;
+  padding:8px;
+  font-size:13px;
+  max-height:35vh;
+  overflow-y:auto;
+  line-height:1.5;
+}
 </style>
 </head>
 
 <body>
 
-<div class="card">
+<!-- MAIN SCREEN -->
+<div class="card" id="mainScreen">
 <h2>Cricket Score App</h2>
 
 <div align="center">
@@ -174,6 +113,11 @@ Total Overs:
 <div class="btn-row">
 <button class="start" id="startBtn" onclick="startMatch()">START</button>
 <button class="reset" onclick="resetMatch()">RESET</button>
+</div>
+
+<div class="btn-row">
+<button class="ctrl" id="overHistoryBtn" onclick="openOverHistory()" disabled>OVER HISTORY</button>
+<button class="ctrl" onclick="openMatchHistory()">MATCH HISTORY</button>
 </div>
 
 <h3 id="inningText">—</h3>
@@ -203,22 +147,50 @@ Total Overs:
 
 <div class="btn-row">
 <button class="undo" onclick="undo()">UNDO</button>
-<button class="ctrl" onclick="endInnings()">END</button>
+<button class="ctrl" onclick="endInnings()">END INNINGS</button>
 </div>
 
 <div class="result" id="result"></div>
 </div>
 
+<!-- OVER HISTORY -->
+<div class="card" id="overHistoryScreen" style="display:none">
+<h2>Over History</h2>
+<h3 id="overInningText"></h3>
+
+<h4>First Innings</h4>
+<div id="firstOverHistory" class="history-box"></div>
+
+<h4>Second Innings</h4>
+<div id="secondOverHistory" class="history-box"></div>
+
+<div class="btn-row">
+<button class="ctrl" onclick="backToMain()">BACK</button>
+</div>
+</div>
+
+<!-- MATCH HISTORY -->
+<div class="card" id="matchHistoryScreen" style="display:none">
+<h2>Match History</h2>
+<div id="matchList" class="history-box"></div>
+
+<div class="btn-row">
+<button class="ctrl" onclick="backToMain()">BACK</button>
+</div>
+</div>
+
 <script>
 let started=false, inning=1;
 let runs=0,wickets=0,balls=0,totalBalls=0,target=0,matchOver=false;
-let history=[[]],stack=[];
+let history=[[]],firstHistory=null,secondHistory=null,stack=[];
+let matches=JSON.parse(localStorage.getItem("matches"))||[];
 
 function enableScore(e){
 document.querySelectorAll(".scoreBtn").forEach(b=>b.disabled=!e);
+document.getElementById("overHistoryBtn").disabled=!started;
 }
 
-function showTapAnimation(text,x,y,type){
+function showTap(text,x,y,type){
 const el=document.createElement("div");
 el.className=`float-score ${type}`;
 el.innerText=text;
@@ -230,7 +202,7 @@ setTimeout(()=>el.remove(),800);
 
 function startMatch(){
 totalBalls=totalOvers.value*6;
-started=true;
+started=true;inning=1;
 enableScore(true);
 startBtn.disabled=true;
 inningText.innerText="First Innings";
@@ -242,15 +214,15 @@ if(!started||matchOver)return;
 runs+=r;balls++;
 history.at(-1).push(r===0?".":r);
 if(balls%6===0)history.push([]);
-showTapAnimation(r===0?"•":"+"+r,e.clientX,e.clientY,"run");
+showTap(r===0?"•":"+"+r,e.clientX,e.clientY,"run");
 update();
 }
 
 function extra(t,e){
 let ex=parseInt(prompt("Runs on "+t,1))||1;
 runs+=ex;
-history.at(-1).push(t+"+"+ex);
-showTapAnimation(t+"+"+ex,e.clientX,e.clientY,"extra");
+history.at(-1).push(`${t}+${ex}`);
+showTap(`${t}+${ex}`,e.clientX,e.clientY,"extra");
 update();
 }
 
@@ -258,15 +230,15 @@ function wicket(e){
 wickets++;balls++;
 history.at(-1).push("W");
 if(balls%6===0)history.push([]);
-showTapAnimation("W",e.clientX,e.clientY,"wicket");
+showTap("W",e.clientX,e.clientY,"wicket");
 update();
 }
 
 function endInnings(){
+firstHistory=JSON.parse(JSON.stringify(history));
 target=runs+1;
 runs=wickets=balls=0;
-history=[[]];
-inning=2;
+history=[[]];inning=2;
 inningText.innerText="Second Innings";
 update();
 }
@@ -276,6 +248,7 @@ score.innerText=`${runs}/${wickets}`;
 overs.innerText=`Overs: ${Math.floor(balls/6)}.${balls%6}`;
 currentOver.innerText=`Current Over: ${history.at(-1).join(" ")||"—"}`;
 target.innerText=inning===2?`Target: ${target}`:"";
+enableScore(started&&!matchOver);
 
 if(inning===2&&!matchOver){
 if(runs>=target)finish(teamB.value);
@@ -287,18 +260,31 @@ function finish(winner){
 matchOver=true;
 result.innerText=`${winner} WON THE MATCH 🎉`;
 result.classList.add("win");
+secondHistory=JSON.parse(JSON.stringify(history));
+matches.push({teams:`${teamA.value} vs ${teamB.value}`,winner,first:firstHistory,second:secondHistory});
+localStorage.setItem("matches",JSON.stringify(matches));
 enableScore(false);
 }
 
-function undo(){
-location.reload();
+function openOverHistory(){
+mainScreen.style.display="none";
+overHistoryScreen.style.display="block";
+overInningText.innerText=`Current Innings: ${inning===1?"First":"Second"}`;
+firstOverHistory.innerHTML=formatOver(firstHistory||history,inning===1);
+secondOverHistory.innerHTML=inning===2?formatOver(history,true):"—";
 }
 
-function resetMatch(){
-location.reload();
+function openMatchHistory(){
+mainScreen.style.display="none";
+matchHistoryScreen.style.display="block";
+matchList.innerHTML=matches.map((m,i)=>`<b>Match ${i+1}</b><br>${m.teams}<br>Winner: ${m.winner}<br><br>`).join("")||"No matches yet";
 }
 
-/* OVER HISTORY */
+function backToMain(){
+document.querySelectorAll(".card").forEach(c=>c.style.display="none");
+mainScreen.style.display="block";
+}
+
 function overRuns(o){
 return o.reduce((s,b)=>{
 if(b==="."||b==="W")return s;
@@ -307,55 +293,20 @@ if(b.includes("+"))return s+parseInt(b.split("+")[1]);
 return s;
 },0);
 }
+
 function formatOver(h,isLive){
 if(!h)return"—";
 let html="";
 h.forEach((o,i)=>{
 if(!o.length)return;
-let label=(isLive&&i===h.length-1&&o.length<6)
-? `<b>Current Over (${i+1})</b>`
-: `Over ${i+1}`;
-html+=`${label}: ${o.join(" ")} | Runs: ${overRuns(o)}<br>`;
+let lbl=isLive&&i===h.length-1?`<b>Current Over</b>`:`<b>Over ${i+1}</b>`;
+html+=`${lbl}: ${o.join(" ")} | Runs: ${overRuns(o)}<br>`;
 });
 return html;
 }
-function openOverHistory(){
-  document.getElementById("mainScreen").style.display="none";
-  document.getElementById("overHistoryScreen").style.display="block";
 
-  document.getElementById("overInningText").innerText =
-    `Current Innings: ${inning === 1 ? "First" : "Second"}`;
-
-  // ✅ FIXED LOGIC
-  if (inning === 1) {
-    // First innings running
-    document.getElementById("firstOverHistory").innerHTML =
-      formatOver(history, true);
-    document.getElementById("secondOverHistory").innerHTML = "—";
-  } else {
-    // Second innings running or finished
-    document.getElementById("firstOverHistory").innerHTML =
-      formatOver(firstHistory, false);
-    document.getElementById("secondOverHistory").innerHTML =
-      formatOver(history, true);
-  }
-}
-
-/* MATCH HISTORY */
-function openMatchHistory(){
-document.getElementById("mainScreen").style.display="none";
-document.getElementById("matchHistoryScreen").style.display="block";
-let html="";
-matches.forEach((m,i)=>html+=`<b>Match ${i+1}</b>: ${m.teams} — Winner: ${m.winner}<br>`);
-document.getElementById("matchList").innerHTML=html||"No matches yet";
-}
-
-/* NAV */
-function backToMain(){
-document.querySelectorAll(".card").forEach(c=>c.style.display="none");
-document.getElementById("mainScreen").style.display="block";
-}
-  
+function undo(){location.reload()}
+function resetMatch(){location.reload()}
 </script>
 
 </body>
