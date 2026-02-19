@@ -1,9 +1,9 @@
+
 <!DOCTYPE html>
 <html>
 <head>
 <title>Cricket Score App</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-
 <style>
 *{
   box-sizing:border-box;
@@ -16,7 +16,7 @@ html,body{
   height:100%;
   font-family:Arial;
   background:#eef2f5;
-  overflow:hidden; /* App-like */
+  overflow:hidden; /* ❌ no scrollbar */
 }
 
 body{
@@ -27,81 +27,84 @@ body{
 
 /* APP CONTAINER */
 .card{
-  background:#fff;
   width:100%;
-  height:100%;
+  height:100vh;
   max-width:600px;
-  max-height:100vh;
-  padding:14px;
-  border-radius:0; /* app look */
-  box-shadow:none;
-  overflow-y:auto;
+  background:#fff;
+  padding:10px;
+  overflow:hidden; /* ❌ internal scroll disabled */
+  border-radius:0;
 }
 
-/* DESKTOP LOOK */
+/* DESKTOP ONLY */
 @media(min-width:768px){
   .card{
-    border-radius:12px;
     height:auto;
     max-height:95vh;
+    border-radius:12px;
+    overflow-y:auto;
     box-shadow:0 4px 10px rgba(0,0,0,.2);
   }
 }
 
-/* TEXT */
+/* HEADINGS */
 h2,h3,h4{
   text-align:center;
-  margin:6px 0;
+  margin:4px 0;
 }
 
+/* SCORE */
 .score{
-  font-size:34px;
+  font-size:28px;
   font-weight:bold;
   text-align:center;
 }
 
 .currentOver{
-  text-align:center;
-  font-size:14px;
+  font-size:12px;
   color:#555;
-  word-wrap:break-word;
+  text-align:center;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
 }
 
 /* INPUTS */
 input{
-  padding:10px;
+  padding:6px;
+  font-size:12px;
   width:100%;
-  max-width:170px;
-  margin:4px;
-  font-size:14px;
+  max-width:140px;
+  margin:3px;
 }
 
-/* FLEX ROWS */
+/* FLEX ROW */
 .btn-row{
   display:flex;
   flex-wrap:wrap;
   justify-content:center;
 }
 
-/* BUTTONS */
+/* SMALL BUTTONS (ICON SIZE) */
 button{
-  padding:12px;
-  margin:5px;
+  padding:8px;
+  margin:4px;
   width:100%;
-  max-width:110px;
+  max-width:90px;
   border:none;
-  border-radius:8px;
+  border-radius:6px;
+  font-size:12px;
   cursor:pointer;
-  font-size:14px;
 }
 
 button:disabled{
   opacity:.4;
 }
 
-/* PRIMARY BUTTONS */
+/* LARGE ACTION BUTTONS */
 .start,.reset,.ctrl,.undo{
-  max-width:260px;
+  max-width:200px;
+  font-size:13px;
 }
 
 /* COLORS */
@@ -116,17 +119,12 @@ button:disabled{
 
 .result{
   text-align:center;
+  font-size:14px;
   font-weight:bold;
-  margin:10px 0;
-}
-
-/* SAFE AREA (iOS) */
-@supports(padding: env(safe-area-inset-bottom)){
-  .card{
-    padding-bottom: calc(14px + env(safe-area-inset-bottom));
-  }
+  margin-top:6px;
 }
 </style>
+
 </head>
 <body>
 
