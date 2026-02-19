@@ -1,579 +1,287 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Shyam Vachhani | Full Stack Engineer & Product Partner</title>
-  <meta name="description"
-    content="Shyam Vachhani is a full-stack engineer crafting high-performance websites, web apps, and product experiences for modern brands.">
-  <meta name="keywords"
-    content="Shyam Vachhani, full stack developer, react developer, asp.net developer, freelance engineer, product designer, rajkot developer">
-  <meta name="author" content="Shyam Vachhani">
-  <link rel="canonical" href="https://shyam-13.github.io/ShyamPortfolio/">
-  <meta property="og:title" content="Shyam Vachhani | Full Stack Engineer & Product Partner">
-  <meta property="og:description" content="Product-grade web, mobile, and cloud platforms with measurable outcomes.">
-  <meta property="og:image" content="https://shyam-13.github.io/ShyamPortfolio/assets/img/profile.jpg">
-  <meta property="og:url" content="https://shyam-13.github.io/ShyamPortfolio/">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="theme-color" content="#090f2e">
-  <link href="assets/img/favicon3.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-  <link href="https://fonts.googleapis.com" rel="preconnect">
-  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Poppins:wght@400;500;600&family=Raleway:wght@400;600;700&display=swap"
-    rel="stylesheet">
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-  <link href="assets/css/main.css" rel="stylesheet">
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Shyam Vachhani",
-      "jobTitle": "Full Stack Engineer",
-      "url": "https://shyam-13.github.io/ShyamPortfolio/",
-      "image": "https://shyam-13.github.io/ShyamPortfolio/assets/img/profile.jpg",
-      "sameAs": [
-        "https://www.linkedin.com/in/shyamvachhani1303/"
-      ],
-      "knowsAbout": [
-        "React.js",
-        "ASP.NET Core",
-        "Product Design",
-        "Cloud Architecture"
-      ],
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Rajkot",
-        "addressRegion": "Gujarat",
-        "addressCountry": "India"
-      }
-    }
-  </script>
+<title>Cricket Score App</title>
+<style>
+body{font-family:Arial;background:#eef2f5;display:flex;justify-content:center}
+.card{background:#fff;width:580px;padding:20px;border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,.2)}
+h2,h3{text-align:center;margin:6px}
+.score{font-size:30px;font-weight:bold;text-align:center}
+.currentOver{text-align:center;font-size:14px;color:#555}
+button{padding:8px;margin:4px;width:120px;border:none;border-radius:5px;cursor:pointer}
+button:disabled{opacity:.4;cursor:not-allowed}
+.start{background:#2e7d32;color:#fff;width:250px}
+.reset{background:#b71c1c;color:#fff;width:250px}
+.ctrl{background:#1565c0;color:#fff;width:250px}
+.undo{background:#333;color:#fff;width:250px}
+.dot{background:#607d8b;color:#fff}
+.wide{background:#ff9800;color:#fff}
+.nb{background:#9c27b0;color:#fff}
+.w{background:#e53935;color:#fff}
+.result{text-align:center;font-weight:bold;margin-top:10px}
+input{padding:6px;width:140px}
+hr{margin:10px 0}
+</style>
 </head>
+<body>
 
-<body class="index-page">
-   <i class="header-toggle d-xl-none bi bi-list"></i>
-  <header id="header" class="header dark-background d-flex flex-column">
-    <div class="profile-img">
-      <img src="assets/img/my-profile-img.jpg" alt="Shyam Vachhani portrait" class="img-fluid rounded-circle">
-    </div>
-    <a href="index.html" class="logo d-flex align-items-center justify-content-center">
-      <h1 class="sitename">Shyam Vachhani</h1>
-    </a>
-    <div class="social-links text-center">
-      <a href="https://www.linkedin.com/in/shyamvachhani1303/" target="_blank" rel="noopener" class="linkedin">
-        <i class="bi bi-linkedin"></i>
-      </a>
-      <!-- <button id="theme-toggle" class="theme-toggle icon-3d icon-3d-sm" aria-label="Toggle theme">
-        <i class="bi bi-moon-stars"></i>
-      </button> -->
-    </div>
-    <nav id="navmenu" class="navmenu">
-      <ul>
-        <li><a href="index.html#hero" class="active">
-            <span class="navicon icon-3d icon-3d-sm"><i class="bi bi-house-door"></i></span><span class="nav-label">Home</span>
-          </a></li>
-        <li><a href="index.html#about">
-            <span class="navicon icon-3d icon-3d-sm"><i class="bi bi-person"></i></span><span class="nav-label">About</span>
-          </a></li>
-        <li><a href="index.html#skills">
-            <span class="navicon icon-3d icon-3d-sm"><i class="bi bi-cpu"></i></span><span class="nav-label">Skills</span>
-          </a></li>
-        <!-- <li><a href="index.html#resume">
-            <span class="navicon icon-3d icon-3d-sm"><i class="bi bi-journal-text"></i></span><span class="nav-label">Resume</span>
-          </a></li> -->
-        <li><a href="index.html#services">
-            <span class="navicon icon-3d icon-3d-sm"><i class="bi bi-grid"></i></span><span class="nav-label">Services</span>
-          </a></li>
-        <li><a href="index.html#portfolio">
-            <span class="navicon icon-3d icon-3d-sm"><i class="bi bi-kanban"></i></span><span class="nav-label">Portfolio</span>
-          </a></li>
-        <li><a href="index.html#blog">
-          <span class="navicon icon-3d icon-3d-sm"><i class="bi bi-journal-richtext"></i></span><span class="nav-label">Blog</span>
-          </a></li>
-        <li><a href="index.html#contact">
-            <span class="navicon icon-3d icon-3d-sm"><i class="bi bi-envelope-paper-heart"></i></span><span class="nav-label">Contact</span>
-          </a></li>
-      </ul>
-    </nav>
-  </header>
+<!-- MAIN SCREEN -->
+<div class="card" id="mainScreen">
+<h2>Cricket Score App</h2>
 
-  <main class="main">
-<section id="hero" class="hero section dark-background">
-  <div class="hero-bg-canvas">
-    <canvas id="heroCanvas"></canvas>
-  </div>
-  <!-- <div class="hero-top-icons">
-  <a href="https://www.linkedin.com/in/shyamvachhani1303/" target="_blank" rel="noopener" class="linkedin">
-    <i class="bi bi-linkedin"></i>
-  </a>
-  <button id="theme-toggletop" class="theme-toggle" aria-label="Toggle theme">
-    <i class="bi bi-moon-stars"></i>
-  </button> 
-  </div> -->
+<div align="center">
+<input id="teamA" placeholder="Team A" value="Team A">
+vs
+<input id="teamB" placeholder="Team B" value="Team B">
+</div>
 
-  <div class="container position-relative hero-content" data-aos="fade-up" data-aos-delay="100">
-    <p class="eyebrow">Freelancer · Web developerr</p>
-    <h1>Hi, I'm Shyam Vachhani</h1>
-    <p class="lead">
-      I build <span class="typed" data-typed-items="Product-grade web apps,High-converting websites,Frictionless mobile apps,Automation pipelines">
-      Product-grade web apps</span>
-    </p>
+<div align="center">
+Total Overs:
+<input type="number" id="totalOvers" value="10" min="1">
+</div>
 
-    <div class="hero-cta">
-      <a href="#contact" class="btn btn-gradient"><i class="bi bi-send"></i> Start a project</a>
-      <a href="#portfolio" class="btn btn-outline-gradient"><i class="bi bi-play-circle"></i> Explore work</a>
+<div align="center">
+<button class="start" id="startBtn" onclick="startMatch()">START MATCH</button>
+<button class="reset" onclick="resetMatch()">RESET</button>
+</div>
 
-  <a href="https://www.linkedin.com/in/shyamvachhani1303/" 
-     target="_blank" 
-     rel="noopener" 
-     class="btn btn-outline-gradient">
-    <i class="bi bi-linkedin"></i> LinkedIn
-  </a>
-    </div>
-    <a href="#about" class="scroll-down-btn">
-  <i class="bi bi-chevron-down"></i>
-</a>
-  </div>
-</section>
+<div align="center">
+<button class="ctrl" id="overHistoryBtn" onclick="openOverHistory()" disabled>OVER HISTORY</button>
+<button class="ctrl" onclick="openMatchHistory()">MATCH HISTORY</button>
+</div>
 
+<h3 id="inningText">—</h3>
+<div class="score" id="score">0/0</div>
+<div class="currentOver" id="currentOver">Current Over: —</div>
+<div align="center" id="overs">Overs: 0.0</div>
+<div align="center" id="target"></div>
 
-    <section id="about" class="about section">
-      <div class="container section-title" data-aos="fade-up">
-        <h2>About</h2>
-        <p>I'm a passionate freelance developer specializing in creating robust, scalable web applications. With expertise in both frontend and backend technologies, I deliver team-based full-stack solutions that drive business success.</p>
-      </div>
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-        <div class="glass-panel about-panel">
-          <div class="row gy-4 justify-content-center">
-            <div class="col-lg-4">
-              <img src="assets/img/my-profile-img.jpg" class="img-fluid rounded-4" alt="">
-            </div>
-            <div class="col-lg-8 content">
-              <h2>Freelancer &amp; Web Developer.</h2>
-              <p class="fst-italic py-3">
-                Freelance Web & Software Developer | Team-Based Full-Stack Solutions
-              </p>
-              <div class="row">
-                <div class="col-lg-6">
-                  <ul>
-                    <li><i class="bi bi-chevron-right"></i> <strong>Website:</strong><span><a href="https://shyam-13.github.io/ShyamPortfolio/" target="_blank">ShyamPortfolio</a></span></li>
-                    <li><i class="bi bi-chevron-right"></i> <strong>Phone:</strong><span>+91 9328480355</span></li>
-                    <li><i class="bi bi-chevron-right"></i> <strong>City:</strong><span>Rajkot, India</span></li>
-                  </ul>
-                </div>
-                <div class="col-lg-6">
-                  <ul>
-                    <li><i class="bi bi-chevron-right"></i> <strong>Degree:</strong> <span>MSC.IT, BCA</span></li>
-                    <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <span>shyamvachhani371@gmail.com</span></li>
-                    <li><i class="bi bi-chevron-right"></i> <strong>Freelance:</strong> <span>Available</span></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+<div align="center">
+<button class="dot scoreBtn" onclick="ball(0)" disabled>0</button>
+<button class="scoreBtn" onclick="ball(1)" disabled>1</button>
+<button class="scoreBtn" onclick="ball(2)" disabled>2</button>
+<button class="scoreBtn" onclick="ball(3)" disabled>3</button>
+<button class="scoreBtn" onclick="ball(4)" disabled>4</button>
+<button class="scoreBtn" onclick="ball(5)" disabled>5</button>
+<button class="scoreBtn" onclick="ball(6)" disabled>6</button>
+</div>
 
-    <section id="skills" class="skills section light-background">
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Skills</h2>
-      </div>
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-        <div class="glass-panel">
-          <div class="row skills-content skills-animation">
-            <div class="col-lg-6">
-              <div class="glass-card mb-4">
-                <h5 class="mb-3">Programming Languages</h5>
-                <div class="d-flex flex-wrap gap-2">
-                  <span class="badge bg-secondary text-white">JavaScript</span>
-                  <span class="badge bg-secondary text-white">C#</span>
-                  <span class="badge bg-secondary text-white">HTML5</span>
-                  <span class="badge bg-secondary text-white">CSS3</span>
-                  <span class="badge bg-secondary text-white">SQL</span>
-                </div>
-              </div>
-              <div class="glass-card mb-4">
-                <h5 class="mb-3">Web Development &amp; Frameworks</h5>
-                <div class="d-flex flex-wrap gap-2">
-                  <span class="badge bg-secondary text-white">React.js</span>
-                  <span class="badge bg-secondary text-white">ASP.NET</span>
-                  <span class="badge bg-secondary text-white">.NET Framework</span>
-                  <span class="badge bg-secondary text-white">Bootstrap</span>
-                  <span class="badge bg-secondary text-white">jQuery</span>
-                </div>
-              </div>
-              <div class="glass-card mb-4">
-                <h5 class="mb-3">Databases &amp; Data Handling</h5>
-                <div class="d-flex flex-wrap gap-2">
-                  <span class="badge bg-secondary text-white">SQL Server</span>
-                  <span class="badge bg-secondary text-white">MySQL</span>
-                  <span class="badge bg-secondary text-white">Stored Procedures</span>
-                  <span class="badge bg-secondary text-white">Query Optimization</span>
-                  <span class="badge bg-secondary text-white">Database Design</span>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-6">
-              <div class="glass-card mb-4">
-                <h5 class="mb-3">Tools &amp; Platforms</h5>
-                <div class="d-flex flex-wrap gap-2">
-                  <span class="badge bg-secondary text-white">Visual Studio</span>
-                  <span class="badge bg-secondary text-white">VS Code</span>
-                  <span class="badge bg-secondary text-white">Swagger</span>
-                  <span class="badge bg-secondary text-white">Postman</span>
-                </div>
-              </div>
-              <div class="glass-card mb-4">
-                <h5 class="mb-3">Development Practices</h5>
-                <div class="d-flex flex-wrap gap-2">
-                  <span class="badge bg-secondary text-white">Object-Oriented Programming</span>
-                  <span class="badge bg-secondary text-white">REST API Integration</span>
-                  <span class="badge bg-secondary text-white">Performance Tuning</span>
-                  <span class="badge bg-secondary text-white">Debugging</span>
-                </div>
-              </div>
-              <div class="glass-card mb-4">
-                <h5 class="mb-3">Soft Skills</h5>
-                <div class="d-flex flex-wrap gap-2">
-                  <span class="badge bg-secondary text-white">Root Cause Analysis</span>
-                  <span class="badge bg-secondary text-white">Agile Collaboration</span>
-                  <span class="badge bg-secondary text-white">Stakeholder Communication</span>
-                  <span class="badge bg-secondary text-white">Mentoring</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+<div align="center">
+<button class="wide scoreBtn" onclick="extra('Wd')" disabled>Wide</button>
+<button class="nb scoreBtn" onclick="extra('Nb')" disabled>No Ball</button>
+</div>
 
-    <!-- <section id="resume" class="resume section">
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Resume</h2>
-        <p>To leverage my expertise as a full-stack software developer and team lead to deliver innovative, high-quality web and mobile solutions. Passionate about building scalable applications, optimizing performance, and collaborating with cross-functional teams to drive digital transformation and exceed client expectations.</p>
-      </div>
-      <div class="container">
-        <div class="row gy-4">
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-            <div class="glass-panel resume-panel h-100">
-              <h3 class="resume-title">Summary</h3>
-              <div class="resume-item pb-0">
-                <h4>Shyam Vachhani</h4>
-                <p><em>Aspiring full-stack software developer and freelancer with hands-on experience in JavaScript, C#, SQL Server, and React.js. Passionate about building scalable web applications, delivering client-focused solutions, and improving technical proficiency through real-world projects.</em></p>
-                <ul>
-                  <li>Rajkot, Gujarat, India</li>
-                  <li>+91 9328480355</li>
-                  <li>Shyamvachhani371@gmail.com</li>
-                </ul>
-              </div>
-              <h3 class="resume-title">Education</h3>
-              <div class="resume-item">
-                <h4>MSC IT</h4>
-                <h5>2022 - 2024</h5>
-                <p><em>Saurashtra University – Rajkot</em></p>
-                <p>Percentage: 72.81%</p>
-              </div>
-              <div class="resume-item">
-                <h4>BCA</h4>
-                <h5>2019 - 2022</h5>
-                <p><em>Atmiya University – Rajkot</em></p>
-                <p>CGPI: 7.86</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
-            <div class="glass-panel resume-panel h-100">
-              <h3 class="resume-title">Professional Experience</h3>
-              <div class="resume-item">
-                <h4>Software Developer - Infinity Infoway Pvt Ltd</h4>
-                <h5>20/12/2021 - 20/09/2025</h5>
-                <p><em>Rajkot</em></p>
-                <ul>
-                  <li>Contributed to the development and maintenance of travel software solutions, improving user experience and optimizing backend performance.</li>
-                  <li>Worked closely with cross-functional teams to implement new features, troubleshoot issues, and enhance system functionality.</li>
-                  <li>Gained hands-on experience with technologies such as JavaScript, C#, SQL Server, and React.js in a dynamic, fast-paced environment.</li>
-                </ul>
-              </div>
-              <div class="resume-item">
-                <h4>Freelance Software Developer</h4>
-                <h5>2025 - Present</h5>
-                <p><em>Remote / Rajkot</em></p>
-                <ul>
-                  <li>Deliver full-stack web and mobile solutions for clients using React.js, .NET Core, and SQL Server.</li>
-                  <li>Lead a small team of developers and designers to build scalable, high-performing applications.</li>
-                  <li>Manage end-to-end project lifecycle from requirement analysis, UI/UX design, development, to deployment.</li>
-                  <li>Collaborate with clients to understand requirements and provide tailored solutions that improve efficiency and user experience.</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section> -->
+<div align="center">
+<button class="w scoreBtn" onclick="wicket()" disabled>Wicket</button>
+</div>
 
-    <section id="services" class="services section light-background py-5">
-  <div class="container section-title" data-aos="fade-up">
-    <h2>Services</h2>
-    <p>Technology-focused services with modern tools, frameworks, and scalable solutions.</p>
-  </div>
+<div align="center">
+<button class="undo" onclick="undo()">UNDO</button>
+<button class="ctrl" id="endBtn" onclick="endInnings()" disabled>END INNINGS</button>
+</div>
 
-  <div class="container">
-    <div class="row gy-4">
+<div class="result" id="result"></div>
+</div>
 
-      <!-- Web Development -->
-      <div class="col-lg-4 col-md-6">
-        <div class="service-glass" data-aos="fade-up" data-aos-delay="80">
-          <div class="service-icon-glass icon-3d icon-3d-sm">
-            <i class="bi bi-globe"></i>
-          </div>
-          <h4>Web Development</h4>
-          <p>Scalable, fast, and secure web applications using modern frameworks.</p>
-          <ul class="service-tags">
-            <li>PHP</li>
-            <li>Node.js</li>
-            <li>Angular.js</li>
-            <li>React.js</li>
-            <li>Next.js</li>
-            <li>Vue.js</li>
-            <li>Nuxt.js</li>
-            <li>Laravel</li>
-            <li>Drupal</li>
-            <li>WordPress</li>
-          </ul>
-        </div>
-      </div>
+<!-- OVER HISTORY SCREEN -->
+<div class="card" id="overHistoryScreen" style="display:none">
+<h2>Over History (Umpire View)</h2>
 
-      <!-- AI / ML -->
-      <div class="col-lg-4 col-md-6">
-        <div class="service-glass" data-aos="fade-up" data-aos-delay="120">
-          <div class="service-icon-glass icon-3d icon-3d-sm">
-            <i class="bi bi-cpu"></i>
-          </div>
-          <h4>AI / Machine Learning</h4>
-          <p>Intelligent solutions with automation, prediction, and data-driven models.</p>
-          <ul class="service-tags">
-            <li>Artificial Intelligence</li>
-            <li>Machine Learning</li>
-            <li>Data Science</li>
-            <li>Generative AI</li>
-            <li>AI Integration</li>
-          </ul>
-        </div>
-      </div>
+<h3 id="overInningText"></h3>
 
-      <!-- E-Commerce -->
-      <div class="col-lg-4 col-md-6">
-        <div class="service-glass" data-aos="fade-up" data-aos-delay="160">
-          <div class="service-icon-glass icon-3d icon-3d-sm">
-            <i class="bi bi-cart-check"></i>
-          </div>
-          <h4>E-Commerce Development</h4>
-          <p>High-converting online stores with scalable architecture.</p>
-          <ul class="service-tags">
-            <li>Shopify</li>
-            <li>WooCommerce</li>
-            <li>Magento</li>
-            <li>BigCommerce</li>
-            <li>PrestaShop</li>
-          </ul>
-        </div>
-      </div>
+<h4>First Innings</h4>
+<div id="firstOverHistory"></div>
 
-      <!-- Design -->
-      <div class="col-lg-4 col-md-6">
-        <div class="service-glass" data-aos="fade-up" data-aos-delay="200">
-          <div class="service-icon-glass icon-3d icon-3d-sm">
-            <i class="bi bi-palette"></i>
-          </div>
-          <h4>Design Services</h4>
-          <p>Creative user-focused designs that convert and impress.</p>
-          <ul class="service-tags">
-            <li>Brand Design</li>
-            <li>UI/UX Design</li>
-            <li>Web Design</li>
-          </ul>
-        </div>
-      </div>
+<hr>
 
-    </div>
-  </div>
-</section>
+<h4>Second Innings</h4>
+<div id="secondOverHistory"></div>
 
-    <section id="portfolio" class="portfolio section">
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Portfolio</h2>
-        <p>High-impact work across SaaS, commerce, mobility, and experience-heavy websites.</p>
-      </div>
-      <div class="container">
-        <div class="filter-chip-group" id="portfolio-filters" data-aos="fade-up" data-aos-delay="50"></div>
-        <div id="portfolio-container" class="row g-4" data-aos="fade-up" data-aos-delay="100"></div>
-        <div class="text-center mt-4">
-          <button id="portfolio-load-more" class="btn btn-outline-gradient">
-            <i class="bi bi-plus-circle"></i> Load More
-          </button>
-        </div>
-      </div>
-    </section>
+<div align="center">
+<button class="ctrl" onclick="backToMain()">BACK</button>
+</div>
+</div>
 
-    <section id="blog" class="blog section light-background">
-      <div class="container blog-panel section-title" data-aos="fade-up">
-        <h2>Latest Blogs</h2>
-        <p>I document playbooks on discovery, engineering culture, and performance so teams can repeat the wins.</p>
-      </div>
-      <div class="container blog-panel">
-        <div class="row g-4" id="blog-cards"></div>
-        <div class="text-center mt-4">
-          <a href="blog.html" class="btn btn-gradient" id="more-blogs">
-            <i class="bi bi-journal-plus"></i> More Blogs
-          </a>
-        </div>
-      </div>
-    </section>
+<!-- MATCH HISTORY SCREEN -->
+<div class="card" id="matchHistoryScreen" style="display:none">
+<h2>Match History</h2>
+<div id="matchList"></div>
+<div align="center">
+<button class="ctrl" onclick="backToMain()">BACK</button>
+</div>
+</div>
 
-    <section id="contact" class="contact section">
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Contact</h2>
-        <p>Tell me about your idea, KPI, or bottleneck. I will respond within 24 hours.</p>
-      </div>
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-        <div class="row gy-4">
-          <div class="col-lg-5">
-            <div class="info-wrap">
-              <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="200">
-                <div>
-                  <h3>Address</h3>
-                  <p>Rajkot 360004, Gujarat, India</p>
-                </div>
-              </div>
-              <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="250">
-                <div>
-                  <h3>Call</h3>
-                  <p><a href="tel:+919328480355">+91 93284 80355</a></p>
-                </div>
-              </div>
-              <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
-                <div>
-                  <h3>Email</h3>
-                  <p><a href="mailto:shyamvachhani371@gmail.com">shyamvachhani371@gmail.com</a></p>
-                </div>
-              </div>
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d244379.6717002673!2d70.68910081566557!3d22.27289735084161!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3959c98ac71cdf0f%3A0x76dd15cfbe93ad3b!2sRajkot%2C%20Gujarat!5e0!3m2!1sen!2sin!4v1760006011228!5m2!1sen!2sin"
-                frameborder="0" style="border:0; width: 100%; height: 270px;" allowfullscreen="" loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
-          </div>
-          <div class="col-lg-7">
-            <form id="contact-form" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="150">
-              <div class="row gy-4">
-                <div class="col-md-6">
-                  <label for="name-field" class="pb-2">Your Name</label>
-                  <input type="text" name="name" id="name-field" class="form-control" required>
-                </div>
-                <div class="col-md-6">
-                  <label for="email-field" class="pb-2">Your Email</label>
-                  <input type="email" class="form-control" name="email" id="email-field" required>
-                </div>
-                <div class="col-md-12">
-                  <label for="subject-field" class="pb-2">Subject</label>
-                  <input type="text" class="form-control" name="subject" id="subject-field" required>
-                </div>
-                <div class="col-md-12">
-                  <label for="message-field" class="pb-2">Message</label>
-                  <textarea class="form-control" name="message" rows="10" id="message-field" required></textarea>
-                </div>
-                <div class="col-md-12 text-center">
-                  <div class="loading">Loading</div>
-                  <div class="error-message"></div>
-                  <div class="sent-message">Your message has been sent. Thank you!</div>
-                  <button type="submit" class="btn btn-gradient">Send Message</button>
-                </div>
-                <div id="status" class="text-center mt-3 fw-semibold"></div>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
+<script>
+/* STATE */
+let started=false, inning=1;
+let runs=0,wickets=0,balls=0,totalBalls=0,target=0,matchOver=false;
+let history=[[]],firstHistory=null,secondHistory=null;
+let stack=[];
+let matches=JSON.parse(localStorage.getItem("matches"))||[];
 
-  <footer id="footer" class="footer position-relative light-background">
-    <div class="container text-center">
-      <div class="copyright">
-        <p>© <span>Copyright</span> <strong class="px-1 sitename">Shyam Vachhani</strong> <span>All Rights Reserved</span>
-        </p>
-      </div>
-      <div class="credits">
-        Designed &amp; coded by <a href="#hero">Shyam Vachhani</a>
-      </div>
-    </div>
-  </footer>
+/* UI */
+function enableScore(e){
+document.querySelectorAll(".scoreBtn").forEach(b=>b.disabled=!e);
+document.getElementById("endBtn").disabled=!e||inning!==1;
+document.getElementById("overHistoryBtn").disabled=!started;
+}
 
-  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
-      class="bi bi-arrow-up-short"></i></a>
-  <div id="preloader"></div>
+/* HELPERS */
+function save(){stack.push(JSON.stringify({runs,wickets,balls,history,inning,target,matchOver,firstHistory}))}
+function undo(){
+if(!stack.length)return;
+let s=JSON.parse(stack.pop());
+runs=s.runs;wickets=s.wickets;balls=s.balls;
+history=s.history;inning=s.inning;
+target=s.target;matchOver=s.matchOver;
+firstHistory=s.firstHistory;
+document.getElementById("result").innerText="";
+update();
+}
+function canPlay(){return started&&!matchOver&&balls<totalBalls}
 
-  <div class="modal fade blog-modal" id="blogModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
-      <div class="modal-content">
-        <div class="modal-header">
-          <div>
-            <p class="modal-eyebrow" id="blog-modal-meta"></p>
-            <h3 class="modal-title" id="blog-modal-title"></h3>
-          </div>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <img src="" alt="Blog cover" class="blog-modal-cover mb-4 rounded-3" id="blog-modal-cover">
-          <div id="blog-modal-content"></div>
-        </div>
-      </div>
-    </div>
-  </div>
+/* MATCH */
+function startMatch(){
+totalBalls=document.getElementById("totalOvers").value*6;
+started=true;inning=1;
+enableScore(true);
+document.getElementById("startBtn").disabled=true;
+document.getElementById("inningText").innerText="First Innings";
+update();
+}
 
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/typed.js/typed.umd.js"></script>
-  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/js/data.js"></script>
-  <script src="assets/js/main.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-  <script>
-    (function () {
-      emailjs.init("6WMQJU7HpjPqXL1aN");
-    })();
+/* SCORING */
+function ball(r){
+if(!canPlay())return;
+save();
+runs+=r;balls++;
+history.at(-1).push(r===0?".":r);
+if(balls%6===0)history.push([]);
+update();
+}
+function extra(t){
+if(!canPlay())return;
+if(balls%6===0&&balls!==0)return;
+let ex=parseInt(prompt("Runs on "+t,1))||1;
+save();runs+=ex;
+history.at(-1).push(`${t}+${ex}`);
+update();
+}
+function wicket(){
+if(!canPlay())return;
+save();wickets++;balls++;
+history.at(-1).push("W");
+if(balls%6===0)history.push([]);
+update();
+}
 
-    document.getElementById("contact-form").addEventListener("submit", function (event) {
-      event.preventDefault();
-      const status = document.getElementById("status");
-      status.textContent = "Sending...";
-      status.style.color = "var(--heading-color)";
+/* INNINGS */
+function endInnings(){
+if(inning!==1)return;
+save();
+firstHistory=JSON.parse(JSON.stringify(history));
+target=runs+1;
+runs=wickets=balls=0;
+history=[[]];inning=2;
+document.getElementById("inningText").innerText="Second Innings";
+update();
+}
 
-      emailjs.sendForm("service_qckc6ij", "template_qjv3yii", this)
-        .then(() => {
-          status.textContent = "✅ Message sent successfully!";
-          status.style.color = "green";
-          document.getElementById("contact-form").reset();
-        }, (error) => {
-          console.error(error);
-          status.textContent = "❌ Failed to send message. Please try again.";
-          status.style.color = "red";
-        });
-    });
-  </script>
+/* UPDATE */
+function update(){
+document.getElementById("score").innerText=`${runs}/${wickets}`;
+document.getElementById("overs").innerText=`Overs: ${Math.floor(balls/6)}.${balls%6}`;
+document.getElementById("currentOver").innerText=`Current Over: ${history.at(-1).join(" ")||"—"}`;
+document.getElementById("target").innerText=inning===2?`Target: ${target}`:"";
+enableScore(started&&!matchOver);
+
+if(inning===2&&!matchOver){
+if(runs>=target)finish(teamB.value);
+else if(balls>=totalBalls||wickets>=10)finish(teamA.value);
+}
+}
+
+/* FINISH */
+function finish(winner){
+matchOver=true;
+secondHistory=JSON.parse(JSON.stringify(history));
+document.getElementById("result").innerText=`${winner} WON THE MATCH 🎉`;
+matches.push({teams:`${teamA.value} vs ${teamB.value}`,winner,first:firstHistory,second:secondHistory});
+localStorage.setItem("matches",JSON.stringify(matches));
+enableScore(false);
+}
+
+/* OVER HISTORY */
+function overRuns(o){
+return o.reduce((s,b)=>{
+if(b==="."||b==="W")return s;
+if(typeof b==="number")return s+b;
+if(b.includes("+"))return s+parseInt(b.split("+")[1]);
+return s;
+},0);
+}
+function formatOver(h,isLive){
+if(!h)return"—";
+let html="";
+h.forEach((o,i)=>{
+if(!o.length)return;
+let label=(isLive&&i===h.length-1&&o.length<6)
+? `<b>Current Over (${i+1})</b>`
+: `Over ${i+1}`;
+html+=`${label}: ${o.join(" ")} | Runs: ${overRuns(o)}<br>`;
+});
+return html;
+}
+function openOverHistory(){
+  document.getElementById("mainScreen").style.display="none";
+  document.getElementById("overHistoryScreen").style.display="block";
+
+  document.getElementById("overInningText").innerText =
+    `Current Innings: ${inning === 1 ? "First" : "Second"}`;
+
+  // ✅ FIXED LOGIC
+  if (inning === 1) {
+    // First innings running
+    document.getElementById("firstOverHistory").innerHTML =
+      formatOver(history, true);
+    document.getElementById("secondOverHistory").innerHTML = "—";
+  } else {
+    // Second innings running or finished
+    document.getElementById("firstOverHistory").innerHTML =
+      formatOver(firstHistory, false);
+    document.getElementById("secondOverHistory").innerHTML =
+      formatOver(history, true);
+  }
+}
+
+/* MATCH HISTORY */
+function openMatchHistory(){
+document.getElementById("mainScreen").style.display="none";
+document.getElementById("matchHistoryScreen").style.display="block";
+let html="";
+matches.forEach((m,i)=>html+=`<b>Match ${i+1}</b>: ${m.teams} — Winner: ${m.winner}<br>`);
+document.getElementById("matchList").innerHTML=html||"No matches yet";
+}
+
+/* NAV */
+function backToMain(){
+document.querySelectorAll(".card").forEach(c=>c.style.display="none");
+document.getElementById("mainScreen").style.display="block";
+}
+
+/* RESET */
+function resetMatch(){
+started=false;inning=1;
+runs=wickets=balls=0;
+history=[[]];firstHistory=null;secondHistory=null;
+target=0;matchOver=false;stack=[];
+document.getElementById("startBtn").disabled=false;
+document.getElementById("inningText").innerText="—";
+document.getElementById("result").innerText="";
+enableScore(false);
+update();
+}
+</script>
+
 </body>
-
 </html>
