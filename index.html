@@ -217,7 +217,9 @@ if(balls%6===0)history.push([]);
 showTap(r===0?"•":"+"+r,e.clientX,e.clientY,"run");
 update();
 }
-
+function canPlay(){
+  return started && !matchOver && balls < totalBalls;
+}
 function extra(type, e){
   if(!canPlay()) return;
 
