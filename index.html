@@ -181,18 +181,21 @@ Total Overs:
 
 <script>
 /* ================= STATE ================= */
-let started = false, inning = 1;
-let runs = 0, wickets = 0;
-let balls = 0;              // legal balls only
+let started = false;
+let inning = 1;
+
+let runs = 0;
+let wickets = 0;
+let balls = 0;              // LEGAL balls only
 let totalBalls = 0;
-let target = 0;
+let target = null;
 let matchOver = false;
 
 let history = [[]];
 let firstHistory = null;
 let secondHistory = null;
 
-let stack = []; // UNDO stack
+let stack = [];
 let matches = JSON.parse(localStorage.getItem("matches")) || [];
 
 /* ================= HELPERS ================= */
@@ -213,7 +216,7 @@ function enableScore(enable){
   document.querySelectorAll(".scoreBtn")
     .forEach(b => b.disabled = !enable);
 
-  document.getElementById("overHistoryBtn").disabled = !started;
+  overHistoryBtn.disabled = !started;
 }
 
 /* ================= TAP ANIMATION ================= */
@@ -229,15 +232,20 @@ function showTap(text,x,y,type){
 
 /* ================= MATCH ================= */
 function startMatch(){
-  totalBalls = totalOvers.value * 6;
+  totalBalls = Number(totalOvers.value) * 6;
+
   started = true;
   inning = 1;
   runs = wickets = balls = 0;
   history = [[]];
+  firstHistory = secondHistory = null;
+  target = null;
+  matchOver = false;
   stack = [];
 
   startBtn.disabled = true;
   inningText.innerText = "First Innings";
+  result.innerText = "";
 
   enableScore(true);
   update();
@@ -250,12 +258,10 @@ function ball(r,e){
   saveState();
 
   runs += r;
-  balls++; // legal ball
+  balls++;
   history.at(-1).push(r===0 ? "." : r);
 
-  if(balls % 6 === 0){
-    history.push([]); // new over
-  }
+  if(balls % 6 === 0) history.push([]);
 
   showTap(r===0?"•":"+"+r, e.clientX, e.clientY, "run");
   update();
@@ -267,12 +273,10 @@ function wicket(e){
   saveState();
 
   wickets++;
-  balls++; // legal ball
+  balls++;
   history.at(-1).push("W");
 
-  if(balls % 6 === 0){
-    history.push([]);
-  }
+  if(balls % 6 === 0) history.push([]);
 
   showTap("W", e.clientX, e.clientY, "wicket");
   update();
@@ -315,23 +319,29 @@ function update(){
   currentOver.innerText =
     `Current Over: ${history.at(-1).join(" ") || "—"}`;
 
-  target.innerText = inning===2 ? `Target: ${target}` : "";
+  /* ✅ TARGET DISPLAY FIX */
+  if(inning === 2 && target !== null){
+    targetEl.innerText = `Target: ${target}`;
+  } else {
+    targetEl.innerText = "";
+  }
 
   enableScore(started && !matchOver);
 
-  /* AUTO FINISH */
-  if(inning===2 && !matchOver){
-    if(runs >= target){
-      finish(teamB.value);
-    }
-    else if(balls >= totalBalls || wickets >= 10){
-      finish(teamA.value);
-    }
+  /* ✅ AUTO END FIRST INNINGS */
+  if(inning === 1 && balls === totalBalls){
+    endInnings();
+    return;
   }
 
-  /* AUTO END FIRST INNINGS */
-  if(inning===1 && balls >= totalBalls){
-    endInnings();
+  /* ✅ MATCH RESULT (SECOND INNINGS ONLY) */
+  if(inning === 2 && !matchOver){
+    if(runs >= target){
+      finish(teamB.value);        // chasing team wins
+    }
+    else if(balls === totalBalls || wickets === 10){
+      finish(teamA.value);        // defending team wins
+    }
   }
 }
 
@@ -439,6 +449,7 @@ function resetMatch(){
   location.reload();
 }
 </script>
+
 
 
 </body>
