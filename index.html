@@ -211,20 +211,29 @@ update();
 
 function ball(r,e){
 if(!started||matchOver)return;
-runs+=r;balls++;
+runs+=r;balls++;extra
 history.at(-1).push(r===0?".":r);
 if(balls%6===0)history.push([]);
 showTap(r===0?"•":"+"+r,e.clientX,e.clientY,"run");
 update();
 }
 
-function extra(t,e){
-let ex=parseInt(prompt("Runs on "+t,1))||1;
-runs+=ex;
-history.at(-1).push(`${t}+${ex}`);
-showTap(`${t}+${ex}`,e.clientX,e.clientY,"extra");
-update();
+function extra(type, e){
+  if(!canPlay()) return;
+
+  let ex = parseInt(prompt("Runs on " + type, 1)) || 1;
+  save();
+
+  runs += ex;
+  history.at(-1).push(`${type}+${ex}`);
+
+  if(e){
+    showTap(`${type}+${ex}`, e.clientX, e.clientY, "extra");
+  }
+
+  update();
 }
+
 
 function wicket(e){
 wickets++;balls++;
