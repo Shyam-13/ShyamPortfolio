@@ -1,9 +1,3 @@
-
-<!DOCTYPE html>
-<html>
-<head>
-<title>Cricket Score App</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <style>
 *{
   box-sizing:border-box;
@@ -16,38 +10,40 @@ html,body{
   height:100%;
   font-family:Arial;
   background:#eef2f5;
-  overflow:hidden; /* ❌ no scrollbar */
 }
 
+/* SCROLL ENABLED */
 body{
   display:flex;
   justify-content:center;
-  align-items:center;
 }
 
 /* APP CONTAINER */
 .card{
   width:100%;
-  height:100vh;
+  min-height:100vh;
   max-width:600px;
   background:#fff;
-  padding:10px;
-  overflow:hidden; /* ❌ internal scroll disabled */
-  border-radius:0;
+  padding:clamp(8px, 2vw, 14px);
+  overflow-y:auto; /* ✅ scrollbar enabled */
 }
 
-/* DESKTOP ONLY */
+/* DESKTOP */
 @media(min-width:768px){
   .card{
-    height:auto;
-    max-height:95vh;
     border-radius:12px;
-    overflow-y:auto;
+    margin:12px 0;
     box-shadow:0 4px 10px rgba(0,0,0,.2);
   }
 }
 
 /* HEADINGS */
+h2{
+  font-size:clamp(16px, 4vw, 22px);
+}
+h3,h4{
+  font-size:clamp(14px, 3.5vw, 18px);
+}
 h2,h3,h4{
   text-align:center;
   margin:4px 0;
@@ -55,13 +51,14 @@ h2,h3,h4{
 
 /* SCORE */
 .score{
-  font-size:28px;
+  font-size:clamp(24px, 7vw, 36px);
   font-weight:bold;
   text-align:center;
 }
 
+/* OVER TEXT */
 .currentOver{
-  font-size:12px;
+  font-size:clamp(11px, 2.8vw, 14px);
   color:#555;
   text-align:center;
   white-space:nowrap;
@@ -71,10 +68,10 @@ h2,h3,h4{
 
 /* INPUTS */
 input{
-  padding:6px;
-  font-size:12px;
+  padding:clamp(5px, 1.5vw, 8px);
+  font-size:clamp(11px, 2.8vw, 14px);
   width:100%;
-  max-width:140px;
+  max-width:150px;
   margin:3px;
 }
 
@@ -85,15 +82,15 @@ input{
   justify-content:center;
 }
 
-/* SMALL BUTTONS (ICON SIZE) */
+/* 🔑 RESPONSIVE BUTTONS */
 button{
-  padding:8px;
-  margin:4px;
+  padding:clamp(6px, 1.8vw, 12px);
+  margin:clamp(3px, 1vw, 6px);
   width:100%;
-  max-width:90px;
+  max-width:clamp(70px, 18vw, 110px);
+  font-size:clamp(11px, 2.8vw, 14px);
   border:none;
   border-radius:6px;
-  font-size:12px;
   cursor:pointer;
 }
 
@@ -101,10 +98,10 @@ button:disabled{
   opacity:.4;
 }
 
-/* LARGE ACTION BUTTONS */
+/* ACTION BUTTONS */
 .start,.reset,.ctrl,.undo{
-  max-width:200px;
-  font-size:13px;
+  max-width:clamp(150px, 45vw, 260px);
+  font-size:clamp(12px, 3vw, 15px);
 }
 
 /* COLORS */
@@ -119,272 +116,8 @@ button:disabled{
 
 .result{
   text-align:center;
-  font-size:14px;
+  font-size:clamp(13px, 3vw, 16px);
   font-weight:bold;
   margin-top:6px;
 }
 </style>
-
-</head>
-<body>
-
-<!-- MAIN SCREEN -->
-<div class="card" id="mainScreen">
-<h2>Cricket Score App</h2>
-
-<div align="center">
-<input id="teamA" placeholder="Team A" value="Team A">
-vs
-<input id="teamB" placeholder="Team B" value="Team B">
-</div>
-
-<div align="center">
-Total Overs:
-<input type="number" id="totalOvers" value="10" min="1">
-</div>
-
-<div align="center">
-<button class="start" id="startBtn" onclick="startMatch()">START MATCH</button>
-<button class="reset" onclick="resetMatch()">RESET</button>
-</div>
-
-<div align="center">
-<button class="ctrl" id="overHistoryBtn" onclick="openOverHistory()" disabled>OVER HISTORY</button>
-<button class="ctrl" onclick="openMatchHistory()">MATCH HISTORY</button>
-</div>
-
-<h3 id="inningText">—</h3>
-<div class="score" id="score">0/0</div>
-<div class="currentOver" id="currentOver">Current Over: —</div>
-<div align="center" id="overs">Overs: 0.0</div>
-<div align="center" id="target"></div>
-
-<div align="center">
-<button class="dot scoreBtn" onclick="ball(0)" disabled>0</button>
-<button class="scoreBtn" onclick="ball(1)" disabled>1</button>
-<button class="scoreBtn" onclick="ball(2)" disabled>2</button>
-<button class="scoreBtn" onclick="ball(3)" disabled>3</button>
-<button class="scoreBtn" onclick="ball(4)" disabled>4</button>
-<button class="scoreBtn" onclick="ball(5)" disabled>5</button>
-<button class="scoreBtn" onclick="ball(6)" disabled>6</button>
-</div>
-
-<div align="center">
-<button class="wide scoreBtn" onclick="extra('Wd')" disabled>Wide</button>
-<button class="nb scoreBtn" onclick="extra('Nb')" disabled>No Ball</button>
-</div>
-
-<div align="center">
-<button class="w scoreBtn" onclick="wicket()" disabled>Wicket</button>
-</div>
-
-<div align="center">
-<button class="undo" onclick="undo()">UNDO</button>
-<button class="ctrl" id="endBtn" onclick="endInnings()" disabled>END INNINGS</button>
-</div>
-
-<div class="result" id="result"></div>
-</div>
-
-<!-- OVER HISTORY SCREEN -->
-<div class="card" id="overHistoryScreen" style="display:none">
-<h2>Over History (Umpire View)</h2>
-
-<h3 id="overInningText"></h3>
-
-<h4>First Innings</h4>
-<div id="firstOverHistory"></div>
-
-<hr>
-
-<h4>Second Innings</h4>
-<div id="secondOverHistory"></div>
-
-<div align="center">
-<button class="ctrl" onclick="backToMain()">BACK</button>
-</div>
-</div>
-
-<!-- MATCH HISTORY SCREEN -->
-<div class="card" id="matchHistoryScreen" style="display:none">
-<h2>Match History</h2>
-<div id="matchList"></div>
-<div align="center">
-<button class="ctrl" onclick="backToMain()">BACK</button>
-</div>
-</div>
-
-<script>
-/* STATE */
-let started=false, inning=1;
-let runs=0,wickets=0,balls=0,totalBalls=0,target=0,matchOver=false;
-let history=[[]],firstHistory=null,secondHistory=null;
-let stack=[];
-let matches=JSON.parse(localStorage.getItem("matches"))||[];
-
-/* UI */
-function enableScore(e){
-document.querySelectorAll(".scoreBtn").forEach(b=>b.disabled=!e);
-document.getElementById("endBtn").disabled=!e||inning!==1;
-document.getElementById("overHistoryBtn").disabled=!started;
-}
-
-/* HELPERS */
-function save(){stack.push(JSON.stringify({runs,wickets,balls,history,inning,target,matchOver,firstHistory}))}
-function undo(){
-if(!stack.length)return;
-let s=JSON.parse(stack.pop());
-runs=s.runs;wickets=s.wickets;balls=s.balls;
-history=s.history;inning=s.inning;
-target=s.target;matchOver=s.matchOver;
-firstHistory=s.firstHistory;
-document.getElementById("result").innerText="";
-update();
-}
-function canPlay(){return started&&!matchOver&&balls<totalBalls}
-
-/* MATCH */
-function startMatch(){
-totalBalls=document.getElementById("totalOvers").value*6;
-started=true;inning=1;
-enableScore(true);
-document.getElementById("startBtn").disabled=true;
-document.getElementById("inningText").innerText="First Innings";
-update();
-}
-
-/* SCORING */
-function ball(r){
-if(!canPlay())return;
-save();
-runs+=r;balls++;
-history.at(-1).push(r===0?".":r);
-if(balls%6===0)history.push([]);
-update();
-}
-function extra(t){
-if(!canPlay())return;
-if(balls%6===0&&balls!==0)return;
-let ex=parseInt(prompt("Runs on "+t,1))||1;
-save();runs+=ex;
-history.at(-1).push(`${t}+${ex}`);
-update();
-}
-function wicket(){
-if(!canPlay())return;
-save();wickets++;balls++;
-history.at(-1).push("W");
-if(balls%6===0)history.push([]);
-update();
-}
-
-/* INNINGS */
-function endInnings(){
-if(inning!==1)return;
-save();
-firstHistory=JSON.parse(JSON.stringify(history));
-target=runs+1;
-runs=wickets=balls=0;
-history=[[]];inning=2;
-document.getElementById("inningText").innerText="Second Innings";
-update();
-}
-
-/* UPDATE */
-function update(){
-document.getElementById("score").innerText=`${runs}/${wickets}`;
-document.getElementById("overs").innerText=`Overs: ${Math.floor(balls/6)}.${balls%6}`;
-document.getElementById("currentOver").innerText=`Current Over: ${history.at(-1).join(" ")||"—"}`;
-document.getElementById("target").innerText=inning===2?`Target: ${target}`:"";
-enableScore(started&&!matchOver);
-
-if(inning===2&&!matchOver){
-if(runs>=target)finish(teamB.value);
-else if(balls>=totalBalls||wickets>=10)finish(teamA.value);
-}
-}
-
-/* FINISH */
-function finish(winner){
-matchOver=true;
-secondHistory=JSON.parse(JSON.stringify(history));
-document.getElementById("result").innerText=`${winner} WON THE MATCH 🎉`;
-matches.push({teams:`${teamA.value} vs ${teamB.value}`,winner,first:firstHistory,second:secondHistory});
-localStorage.setItem("matches",JSON.stringify(matches));
-enableScore(false);
-}
-
-/* OVER HISTORY */
-function overRuns(o){
-return o.reduce((s,b)=>{
-if(b==="."||b==="W")return s;
-if(typeof b==="number")return s+b;
-if(b.includes("+"))return s+parseInt(b.split("+")[1]);
-return s;
-},0);
-}
-function formatOver(h,isLive){
-if(!h)return"—";
-let html="";
-h.forEach((o,i)=>{
-if(!o.length)return;
-let label=(isLive&&i===h.length-1&&o.length<6)
-? `<b>Current Over (${i+1})</b>`
-: `Over ${i+1}`;
-html+=`${label}: ${o.join(" ")} | Runs: ${overRuns(o)}<br>`;
-});
-return html;
-}
-function openOverHistory(){
-  document.getElementById("mainScreen").style.display="none";
-  document.getElementById("overHistoryScreen").style.display="block";
-
-  document.getElementById("overInningText").innerText =
-    `Current Innings: ${inning === 1 ? "First" : "Second"}`;
-
-  // ✅ FIXED LOGIC
-  if (inning === 1) {
-    // First innings running
-    document.getElementById("firstOverHistory").innerHTML =
-      formatOver(history, true);
-    document.getElementById("secondOverHistory").innerHTML = "—";
-  } else {
-    // Second innings running or finished
-    document.getElementById("firstOverHistory").innerHTML =
-      formatOver(firstHistory, false);
-    document.getElementById("secondOverHistory").innerHTML =
-      formatOver(history, true);
-  }
-}
-
-/* MATCH HISTORY */
-function openMatchHistory(){
-document.getElementById("mainScreen").style.display="none";
-document.getElementById("matchHistoryScreen").style.display="block";
-let html="";
-matches.forEach((m,i)=>html+=`<b>Match ${i+1}</b>: ${m.teams} — Winner: ${m.winner}<br>`);
-document.getElementById("matchList").innerHTML=html||"No matches yet";
-}
-
-/* NAV */
-function backToMain(){
-document.querySelectorAll(".card").forEach(c=>c.style.display="none");
-document.getElementById("mainScreen").style.display="block";
-}
-
-/* RESET */
-function resetMatch(){
-started=false;inning=1;
-runs=wickets=balls=0;
-history=[[]];firstHistory=null;secondHistory=null;
-target=0;matchOver=false;stack=[];
-document.getElementById("startBtn").disabled=false;
-document.getElementById("inningText").innerText="—";
-document.getElementById("result").innerText="";
-enableScore(false);
-update();
-}
-</script>
-
-</body>
-</html>
